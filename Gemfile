@@ -21,6 +21,9 @@ gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
+#images through cloudinary
+gem "cloudinary"
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
@@ -47,6 +50,14 @@ gem "sassc-rails"
 gem "pundit"
 gem "faker"
 
+# gem faker for feeding the seed
+gem "faker"
+
+#ramener les URL depuis unsplash
+gem "nokogiri"
+
+#URI image
+gem 'activestorage'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

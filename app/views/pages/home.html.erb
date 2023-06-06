@@ -1,4 +1,18 @@
-<h1>Welcome on Referral Safe...</h1>
-<p>Choose your role</p>
-<%= link_to "Recruiter", users_path %>
-<%= link_to "Candidate", resume_path %>
+<div class="container">
+  <div class="container-home">
+    <div id="header">
+      <h1>Welcome on</h1>
+      <h2>Referral Safe</h2>
+    </div>
+    <div class="linkto">
+      <%= link_to companies_path, class: "btn-home rounded-pill mb-3" do %>
+        <p>Start as a Recruiter...</p>
+        <i class="fa-solid fa-right-to-bracket"></i>
+      <% end %>
+      <%= link_to users_path, class: "btn-home rounded-pill mt-3" do %>
+        <p>Start as a Candidate...</p>
+        <i class="fa-solid fa-right-to-bracket"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
