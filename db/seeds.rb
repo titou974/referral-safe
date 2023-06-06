@@ -5,14 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
+User.delete_all
 20.times do
   User.create(
     email: Faker::Internet.email,
     password: 'password',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    status: ["Available", "Employed"].sample,
+    available: [true, false].sample,
     address: Faker::Address.full_address
   )
 end
