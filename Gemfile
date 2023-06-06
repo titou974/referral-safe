@@ -48,6 +48,7 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 gem "pundit"
+gem "faker"
 
 # gem faker for feeding the seed
 gem "faker"

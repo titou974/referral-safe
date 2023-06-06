@@ -1,7 +1,7 @@
 class Company < ApplicationRecord
-  has_many :users, through: :positions
+  has_many :users, through: :
   has_many :users, through: :experiences
-  has_many :positions, dependent: :destroy
+  has_many :, dependent: :destroy
 
   validates :name, presence: true
   validates :sector, presence: true
