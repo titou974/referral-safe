@@ -52,6 +52,9 @@ gem "pundit"
 # gem faker for feeding the seed
 gem "faker"
 
+#ramener les URL depuis unsplash
+gem "nokogiri"
+
 #URI image
 gem 'activestorage'
 

@@ -1,4 +1,4 @@
-class PositionsController < ApplicationController
+class RolesController < ApplicationController
 
   def create
   end
@@ -9,5 +9,4 @@ class PositionsController < ApplicationController
   def destroy
 
   end
-  
 end
