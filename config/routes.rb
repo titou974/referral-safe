@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :edit, :update, :show, :index] do
     resources :experiences, only: [:create, :update, :destroy]
-    resources :positions, only: [:create, :update, :destroy]
+    resources :roles, only: [:create, :update, :destroy]
   end
   resources :companies, only: [:create, :update, :destroy]
 

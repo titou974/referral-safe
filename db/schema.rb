@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_192044) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_130337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,15 +37,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_192044) do
     t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
-  create_table "positions", force: :cascade do |t|
+  create_table "roles", force: :cascade do |t|
     t.string "name"
     t.boolean "admin"
-    t.bigint "user_id", null: false
     t.bigint "company_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_positions_on_company_id"
-    t.index ["user_id"], name: "index_positions_on_user_id"
+    t.index ["company_id"], name: "index_roles_on_company_id"
+    t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,6 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_192044) do
 
   add_foreign_key "experiences", "companies"
   add_foreign_key "experiences", "users"
-  add_foreign_key "positions", "companies"
-  add_foreign_key "positions", "users"
+  add_foreign_key "roles", "companies"
+  add_foreign_key "roles", "users"
 end
