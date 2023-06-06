@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @users = User.includes(:role).where(roles: { id: nil })
+    @users = User.where(available: true).includes(:role).where(roles: { id: nil })
   end
 
   def create
@@ -18,5 +18,9 @@ class UsersController < ApplicationController
   end
 
   private
+
+
+  def user_params
+  end
 
 end

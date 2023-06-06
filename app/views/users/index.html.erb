@@ -1,5 +1,41 @@
 <h1>Search a Candidate</h1>
 
 <% @users.each do |user| %>
-  <%= link_to user.first_name,  %>
+
+<!-- Modal -->
+<div class="card">
+  <div class="card-body">
+    <%= user.first_name %> <%= user.last_name %>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      View candidate
+    </button>
+  </div>
+</div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% if user_signed_in? %>
+            <p><%= user.available %></p>
+            <p><%= user.address %></p>
+          <% else %>
+            <p class="blur-effect"><%= user.available %></p>
+            <p class="blur-effect"><%= user.address %></p>
+            <%= link_to "Log in", new_user_registration_path, class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <% end %>
+<!-- Button trigger modal -->
