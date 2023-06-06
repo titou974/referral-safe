@@ -1,31 +1,21 @@
 // Specific CSS for your home-page
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 3vh;
   background-color: #F5F5F5;
-}
 
-.btn-home {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #5877FA;
-  border-color: grey;
-  color: white;
-  text-decoration: none;
-  padding: 1%;
-  width: 30%;
 }
 
 .container-home {
   height: 90vh;
 }
 
-#header {
-  height: 50%;
-  padding-top: 8%;
+.hover-image {
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
 }
 
-.linkto {
-  height: 50%;
+.hover-image:hover {
+  transform: scale(1.1);
 }
