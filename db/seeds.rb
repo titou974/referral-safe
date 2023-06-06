@@ -51,8 +51,9 @@ job_description = ["As a Data Engineer, I took part in building a private Cloud 
 "As a Technical Writer, I created clear and concise documentation for software products and technical processes. I collaborated with subject matter experts to gather information and produce user manuals and guides.",
 "As an IT Support Specialist, I provided technical assistance and support to end-users. I troubleshooted hardware and software issues, configured systems, and ensured smooth IT operations."]
 
+array = ["Small <20", "Medium <350", "Large <5000"]
 
-20.times do
+url_people.each_with_index do |url, index|
   user = User.create(
     email: Faker::Internet.unique.email,
     password: 'password',
@@ -60,25 +61,31 @@ job_description = ["As a Data Engineer, I took part in building a private Cloud 
     last_name: Faker::Name.last_name,
     address: Faker::Address.full_address
   )
+  file = URI.open(url)
+  user.photo.attach(io: file, filename: "user#{index + 1}.png", content_type: "image/png")
   puts "Created user: #{user.email}"
 end
 
 25.times do
-  Company.create(
+  company = Company.create(
     name: Faker::Company.name,
     sector: Faker::Company.industry,
-    size: ,
+    size: 5.times do
+      array.sample
+    end,
     siret: Faker::Company.french_siret_number
   )
+  puts "Created company: #{company.name}"
 end
 
 # Seed data for experiences
 25.times do
-  Experience.create(
+  experience = Experience.create(
     job_name: Faker::Job.title,
-    job_description: Faker::Lorem.paragraph,
+    job_description: job_description.sample,
     start_date: Faker::Date.backward(days: 365),
     end_date: Faker::Date.backward(days: 30),
     skills: Faker::Job.key_skill
   )
+  puts "Created experience: #{experience.job_name}"
 end
