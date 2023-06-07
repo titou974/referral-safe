@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @users = User.where(available: true).includes(:role).where(roles: { id: nil })
+    if params[:query].present?
+      @users = User.where(available: true).includes(:role).where(roles: { id: nil }).search_by_first_name_and_last_name(params[:query])
+    else
+      @users = User.where(available: true).includes(:role).where(roles: { id: nil })
+    end
   end
 
   def create
