@@ -1,15 +1,45 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #F5F5F5;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
+.navbar-brand {
+  margin-right: 0;
+  width: 8.5em;
+}
+
+.navbar-brand > i {
+  color:#5877FA
+}
+
+
+.navbar-brand > i:hover {
+  color:rgb(68, 68, 68);
+}
+
+
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-brand p {
+  font-weight: 600
+}
+
+.nav-link {
+  font-size: 0.6em;
+  color: black;
+}
+
+.nav-link:hover {
+  color: rgb(68, 68, 68);
+}
+
 
 p {
   margin: 0%;
@@ -20,4 +50,13 @@ p {
   border-color: grey;
   color: white;
   border-radius: 25%;
+}
+
+
+.avatar-out {
+  color:#5877FA;
+}
+
+.avatar-out:hover {
+  color:rgb(68, 68, 68);
 }
