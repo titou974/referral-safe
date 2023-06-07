@@ -172,7 +172,8 @@ photo_urls.take(25).each_with_index do |url, index|
     password: 'password',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: Faker::Address.full_address
+    address: Faker::Address.full_address,
+    available: Faker::Boolean.boolean
   )
   file = URI.open(url)
   user.photo.attach(io: file, filename: "user#{index + 1}.png", content_type: "image/png")
@@ -212,7 +213,7 @@ puts "#{Experience.all.count} experiences created"
 
 25.times do
   role = Role.new(
-    name: Faker::Boolean.boolean,
+    recruiter: Faker::Boolean.boolean,
     admin: Faker::Boolean.boolean
   )
   role.user = User.all.sample
@@ -232,7 +233,7 @@ user_1 = User.create(
 )
 puts "user test candidate created"
 
-user_2 = User.create(
+user_2 = User.new(
   email: "recruiter@safe.test",
   first_name: "Joe",
   last_name: "Jolie",
@@ -240,6 +241,12 @@ user_2 = User.create(
   address: "30 rue du temple",
   available: false
 )
+
+role = Role.new
+
+user_2.role = role
+
+user_2.save
 puts "user test recruiter created"
 
 company = Company.new(
