@@ -11,19 +11,16 @@ require 'open-uri'
 require 'nokogiri'
 
 # Delete existing records
-Company.delete_all
-User.delete_all
 Experience.delete_all
 Role.delete_all
+Company.delete_all
+User.delete_all
 
 url = 'https://unsplash.com/fr/t/people'
 html = URI.open(url)
 doc = Nokogiri::HTML(html)
 
-p photo_urls = doc.css('.tB6UZ.a5VGX').map { |img| img['src'] }
-p photo_urls.each do |url|
-  puts "\"#{url}\""
-end
+photo_urls = doc.css('.tB6UZ.a5VGX').map { |img| img['src'] }
 
 # url_linkedin = 'https://www.linkedin.com/jobs/search/?currentJobId=3628858218&f_TPR=r604800&geoId=105015875'
 # html = URI.open(url_linkedin)
@@ -71,7 +68,7 @@ job_description = ["As a Data Engineer, I took part in building a private Cloud 
 
 role_name = ["available", "employed"]
 
-array = ["Small <20", "Medium <350", "Large <5000"]
+array = ["Small <350", "Medium <5000", "Large >5000"]
 
 photo_urls.take(25).each_with_index do |url, index|
   user = User.new(
@@ -79,17 +76,17 @@ photo_urls.take(25).each_with_index do |url, index|
     password: 'password',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-
     address: Faker::Address.full_address
   )
-  puts "created user: #{user.first_name}"
   file = URI.open(url)
   user.photo.attach(io: file, filename: "user#{index + 1}.png", content_type: "image/png")
   user.save!
 end
 
+puts "#{User.all.count} users created"
+
 25.times do
-  company = Company.create(
+  company = Company.create!(
     name: Faker::Company.name,
     sector: Faker::Company.industry,
     size: 5.times do
@@ -97,25 +94,60 @@ end
     end,
     siret: Faker::Company.french_siret_number
   )
-  puts "Created company: #{company.name}"
 end
+
+puts "#{Company.all.count} companies created"
 
 # Seed data for experiences
 25.times do
-  experience = Experience.create(
+  experience = Experience.new(
     job_name: Faker::Job.title,
     job_description: job_description.sample,
     start_date: Faker::Date.backward(days: 365),
     end_date: Faker::Date.backward(days: 30),
     skills: Faker::Job.key_skill
   )
-  puts "Created experience: #{experience.job_name}"
+  experience.user = User.all.sample
+  experience.company = Company.all.sample
+  experience.save!
 end
 
+puts "#{Experience.all.count} experiences created"
+
 25.times do
-  role = Role.create(
+  role = Role.new(
     name: role_name.sample,
     admin: Faker::Boolean.boolean
   )
-  puts "Created role: #{role.name}"
+  role.user = User.all.sample
+  role.company = Company.all.sample
+  role.save!
 end
+
+puts "#{Role.all.count} roles created"
+
+user_1 = User.create(
+  email: "candidate@safe.test",
+  first_name: "Laura",
+  last_name: "Lotran",
+  address: "1 ter rue des mauvais garçons",
+  available: true
+)
+puts "user test candidate created"
+
+user_2 = User.create(
+  email: "recruiter@safe.test",
+  first_name: "Joe",
+  last_name: "Jolie",
+  address: "30 rue du temple",
+  available: false
+)
+puts "user test recruiter created"
+
+company = Company.new(
+  name: "ACME Corporation",
+  sector: "Technology",
+  size: "Large >5000",
+  siret: "1234567890"
+)
+puts "company test created"
