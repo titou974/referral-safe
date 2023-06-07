@@ -211,7 +211,7 @@ end
 
 puts "#{Experience.all.count} experiences created"
 
-25.times do
+3.times do
   role = Role.new(
     recruiter: Faker::Boolean.boolean,
     admin: Faker::Boolean.boolean
