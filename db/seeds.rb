@@ -76,7 +76,8 @@ photo_urls.take(25).each_with_index do |url, index|
     password: 'password',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: Faker::Address.full_address
+    address: Faker::Address.full_address,
+    available: Faker::Boolean.boolean
   )
   file = URI.open(url)
   user.photo.attach(io: file, filename: "user#{index + 1}.png", content_type: "image/png")
@@ -114,9 +115,9 @@ end
 
 puts "#{Experience.all.count} experiences created"
 
-25.times do
+3.times do
   role = Role.new(
-    name: role_name.sample,
+    recruiter: Faker::Boolean.boolean,
     admin: Faker::Boolean.boolean
   )
   role.user = User.all.sample
