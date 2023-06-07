@@ -16,7 +16,7 @@ Role.delete_all
 Company.delete_all
 User.delete_all
 
-url = 'https://unsplash.com/fr/t/people'
+url = 'https://unsplash.com/fr/s/photos/people-suit'
 html = URI.open(url)
 doc = Nokogiri::HTML(html)
 
@@ -130,6 +130,7 @@ user_1 = User.create(
   email: "candidate@safe.test",
   first_name: "Laura",
   last_name: "Lotran",
+  password: "123456",
   address: "1 ter rue des mauvais garçons",
   available: true
 )
@@ -139,6 +140,7 @@ user_2 = User.create(
   email: "recruiter@safe.test",
   first_name: "Joe",
   last_name: "Jolie",
+  password: "123456",
   address: "30 rue du temple",
   available: false
 )
