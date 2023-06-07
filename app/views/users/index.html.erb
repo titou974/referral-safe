@@ -6,13 +6,25 @@
         <% @users.each do |user| %>
           <% @name_user = "#{user.first_name} #{user.last_name}" %>
           <div class="col">
-            <div class="cardIndex border border-2 rounded-4 mb-2">
-              <% if user.photo.attached? %>
-                <%= cl_image_tag user.photo.key, height: 130, width: 180, crop: :fill, class: "img-home" %>
-              <% end %>
-              <div class="cardPhoto">
-                <%= link_to @name_user, users_path %>
-                <p>TestAffichage</p>
+            <div class="card-user">
+              <div class="card-user__image">
+                <% if user.photo.attached? %>
+                  <%= cl_image_tag user.photo.key, height: 300, width: 300, crop: :fill, class: "" %>
+                <% end %>
+                <div class="card-user__infos d-flex justify-content-between align-items-center mb-4 mt-3">
+                  <div class="d-flex flex-column justify-centent-center align-items-start">
+                    <%= link_to @name_user, users_path %>
+                    <p>Chef de projet</p>
+                  </div>
+                  <i class="fa-solid fa-eye" style="color: #5877FA;"></i>
+                </div>
+                <div class="card-user-skills border-top pt-3">
+                  <ul class="skills-list">
+                    <li class="skill-pill">#Photoshop</li>
+                    <li class="skill-pill">#Adobe</li>
+                    <li class="skill-pill">#Adobe</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
