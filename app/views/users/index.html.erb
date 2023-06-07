@@ -7,7 +7,9 @@
           <% @name_user = "#{user.first_name} #{user.last_name}" %>
           <div class="col">
             <div class="cardIndex border border-2 rounded-4 mb-2">
-              <img src="https://res.cloudinary.com/dhngy6nkx/image/upload/v1686068664/baldprofile.jpg" width="25%" alt="">
+              <% if user.photo.attached? %>
+                <%= cl_image_tag user.photo.key, height: 130, width: 180, crop: :fill, class: "img-home" %>
+              <% end %>
               <div class="cardPhoto">
                 <%= link_to @name_user, users_path %>
                 <p>TestAffichage</p>
