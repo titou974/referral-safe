@@ -158,6 +158,8 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.7.1)
+    net-http (0.3.2)
+      uri
     net-imap (0.3.4)
       date
       net-protocol
@@ -175,6 +177,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
+    openssl (3.1.0)
     orm_adapter (0.5.0)
     particles-js-rails (2.0.0)
     pg (1.5.3)
@@ -265,6 +268,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
+    uri (0.12.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -303,7 +307,9 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
+  net-http
   nokogiri
+  openssl
   particles-js-rails
   pg (~> 1.1)
   pg_search
