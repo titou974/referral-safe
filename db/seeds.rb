@@ -241,6 +241,8 @@ user_2 = User.new(
   address: "30 rue du temple",
   available: false
 )
+file = URI.open("https://images.unsplash.com/photo-1658756321927-ed2da549bab3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80")
+user_2.photo.attach(io: file, filename: "user#2.png", content_type: "image/png")
 
 role = Role.new
 
