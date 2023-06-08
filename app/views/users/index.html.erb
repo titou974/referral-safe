@@ -12,7 +12,7 @@
     <%# CARDS %>
     <div class="row row-cols-4">
       <% @users.each do |user| %>
-        <% @name_user = "#{user.first_name} #{user.last_name}" %>
+        <% name_user = "#{user.first_name} #{user.last_name}" %>
         <div class="col">
           <div class="card-user">
             <div class="card-user__image" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= user.id %>">
