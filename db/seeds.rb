@@ -50,7 +50,104 @@ photo_urls = doc.css('.tB6UZ.a5VGX').map { |img| img['src'] }
 #   "Technical Writer",
 #   "IT Support Specialist",]
 
-job_description = ["As a Data Engineer, I took part in building a private Cloud with Openstack, as well as a Big Data platform with HortonWorks. I also designed and deployed a DevOps software factory. I have worked with the Safran Analytics OpenData project team, where I built, designed, and implemented data pipelines with Kafka and Spark.",
+#arrays :
+# skills = [
+#   "Programming",
+#   "Writing",
+#   "Communication",
+#   "Leadership",
+#   "Problem-solving",
+#   "Creativity",
+#   "Critical-thinking",
+#   "Teamwork",
+#   "Adaptability",
+#   "Time-management",
+#   "Organization",
+#   "Analytical",
+#   "Research",
+#   "Design",
+#   "Collaboration",
+#   "Presentation",
+#   "Negotiation",
+#   "Decision-making",
+#   "Data analysis",
+#   "Sales",
+#   "Marketing",
+#   "Public speaking",
+#   "Networking",
+#   "Strategic planning",
+#   "Project management",
+#   "Customer service",
+#   "Financial management",
+#   "Innovation",
+#   "Coaching",
+#   "Troubleshooting",
+#   "Content writing",
+#   "Graphic design",
+#   "Web development",
+#   "Data entry",
+#   "SEO optimization",
+#   "Event planning",
+#   "Photography",
+#   "Video editing",
+#   "Teaching",
+#   "Translation",
+#   "Editing",
+#   "Social media management",
+#   "Researching",
+#   "Public relations",
+#   "Budgeting",
+#   "Team management",
+#   "Copywriting",
+#   "Software development",
+#   "UX/UI design",
+#   "Market research",
+#   "Branding",
+#   "Conflict resolution",
+#   "Customer support",
+#   "Database management",
+#   "Data visualization",
+#   "Statistical analysis",
+#   "Business development",
+#   "Logistics",
+#   "Quality control",
+#   "Supply chain management",
+#   "Training",
+#   "Mentoring",
+#   "Event coordination",
+#   "Risk management",
+#   "Problem analysis",
+#   "Presentation design",
+#   "Digital marketing",
+#   "Mobile app development",
+#   "Proofreading",
+#   "Content strategy",
+#   "Grant writing",
+#   "Software testing",
+#   "Financial analysis",
+#   "Inventory management",
+#   "Forecasting",
+#   "Agile methodology",
+#   "Product management",
+#   "Market analysis",
+#   "Crisis management",
+#   "Data mining",
+#   "Research design",
+#   "Leadership development",
+#   "Supplier management",
+#   "Legal research",
+#   "Web analytics",
+#   "Database administration",
+#   "User support",
+#   "Contract negotiation",
+#   "Risk assessment",
+#   "Copy editing",
+#   "Event marketing",
+#   "Wireframing",
+#   "Time tracking"
+# ]
+job_description = [
+  "As a Data Engineer, I took part in building a private Cloud with Openstack, as well as a Big Data platform with HortonWorks. I also designed and deployed a DevOps software factory. I have worked with the Safran Analytics OpenData project team, where I built, designed, and implemented data pipelines with Kafka and Spark.",
   "As a Software Developer, I developed web applications using Ruby on Rails. I implemented new features and optimized existing code. I collaborated with cross-functional teams, performed code reviews, and ensured high-quality software delivery.",
   "As a UX/UI Designer, I created user-centered designs, conducted user research, and developed wireframes and prototypes. I collaborated with developers to implement intuitive and visually appealing user interfaces.",
   "As a Project Manager, I oversaw project planning, execution, and delivery. I coordinated resources, managed budgets, and ensured projects were completed within specified timelines and scope.",
@@ -62,11 +159,10 @@ job_description = ["As a Data Engineer, I took part in building a private Cloud 
   "As a Marketing Manager, I developed and implemented marketing strategies. I conducted market research, planned advertising campaigns, and analyzed marketing data to optimize performance.",
   "As a Systems Analyst, I analyzed business requirements and designed information systems solutions. I collaborated with stakeholders, documented system specifications, and oversaw system testing and implementation.",
   "As a Front-End Developer, I implemented user interfaces using HTML, CSS, and JavaScript. I collaborated with designers to bring their concepts to life and optimized website performance.",
-"As a Quality Assurance Engineer, I designed and executed test plans to ensure software quality. I identified and reported bugs, collaborated with developers to resolve issues, and automated testing processes.",
-"As a Technical Writer, I created clear and concise documentation for software products and technical processes. I collaborated with subject matter experts to gather information and produce user manuals and guides.",
-"As an IT Support Specialist, I provided technical assistance and support to end-users. I troubleshooted hardware and software issues, configured systems, and ensured smooth IT operations."]
+  "As a Quality Assurance Engineer, I designed and executed test plans to ensure software quality. I identified and reported bugs, collaborated with developers to resolve issues, and automated testing processes.",
+  "As a Technical Writer, I created clear and concise documentation for software products and technical processes. I collaborated with subject matter experts to gather information and produce user manuals and guides.",
+  "As an IT Support Specialist, I provided technical assistance and support to end-users. I troubleshooted hardware and software issues, configured systems, and ensured smooth IT operations."]
 
-role_name = ["available", "employed"]
 
 array = ["Small <350", "Medium <5000", "Large >5000"]
 
@@ -76,7 +172,8 @@ photo_urls.take(25).each_with_index do |url, index|
     password: 'password',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: Faker::Address.full_address
+    address: Faker::Address.full_address,
+    available: Faker::Boolean.boolean
   )
   file = URI.open(url)
   user.photo.attach(io: file, filename: "user#{index + 1}.png", content_type: "image/png")
@@ -99,13 +196,13 @@ end
 puts "#{Company.all.count} companies created"
 
 # Seed data for experiences
-25.times do
+100.times do
   experience = Experience.new(
     job_name: Faker::Job.title,
     job_description: job_description.sample,
     start_date: Faker::Date.backward(days: 365),
     end_date: Faker::Date.backward(days: 30),
-    skills: Faker::Job.key_skill
+    skills: Array.new(rand(2..3)) { Faker::Job.key_skill }
   )
   experience.user = User.all.sample
   experience.company = Company.all.sample
@@ -114,9 +211,9 @@ end
 
 puts "#{Experience.all.count} experiences created"
 
-25.times do
+3.times do
   role = Role.new(
-    name: role_name.sample,
+    recruiter: Faker::Boolean.boolean,
     admin: Faker::Boolean.boolean
   )
   role.user = User.all.sample
@@ -136,7 +233,7 @@ user_1 = User.create(
 )
 puts "user test candidate created"
 
-user_2 = User.create(
+user_2 = User.new(
   email: "recruiter@safe.test",
   first_name: "Joe",
   last_name: "Jolie",
@@ -144,6 +241,12 @@ user_2 = User.create(
   address: "30 rue du temple",
   available: false
 )
+
+role = Role.new
+
+user_2.role = role
+
+user_2.save
 puts "user test recruiter created"
 
 company = Company.new(
