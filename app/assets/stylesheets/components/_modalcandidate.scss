@@ -1,0 +1,13 @@
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: 2px solid #5877FA;
+  border-radius: 2em;
+  outline: 0;
+}

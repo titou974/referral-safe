@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    
   end
 
   def edit
@@ -20,6 +21,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @experience = Experience.new
+    @experience.user = @user
   end
 
   private
