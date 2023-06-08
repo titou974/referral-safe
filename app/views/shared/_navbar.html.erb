@@ -19,8 +19,12 @@
             </li>
 
             <li class="nav-item dropdown d-flex align-items-center justify-content-center">
-            <a href="#" class="avatar-out" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user" aria-hidden="true"></i>
+            <a href="#" class="" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.role.present? %>
+                <%= cl_image_tag current_user.company.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
+              <% else %>
+                <%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
+              <% end %>
             </a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Action", "#", class: "dropdown-item" %>

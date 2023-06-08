@@ -1,16 +1,18 @@
 <div class="container-home">
   <div class="row justify-content-center">
     <div class="col-4">
-      <div class="sidebar bg-primary"></div>
+      <div class="sidebar">
+        <div></div>
+      </div>
     </div>
     <div class="row">
       <div class="col">
-        <div class="profil bg-primary"></div>
+        <div class="profil"></div>
       </div>
       <div class="row">
         <div class="col">
           <div class="experiences bg-primary">
-             <%= simple_form_for [@user, @experience] do |f| %>
+            <%= simple_form_for [@user, @experience] do |f| %>
               <%= f.association :company %>
               <%= f.input :job_name, label: "Job Name" %>
               <%= f.input :job_description, label: "Job Description" %>

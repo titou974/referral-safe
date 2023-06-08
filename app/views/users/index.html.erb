@@ -15,15 +15,15 @@
         <% @name_user = "#{user.first_name} #{user.last_name}" %>
         <div class="col">
           <div class="card-user">
-            <div class="card-user__image" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="card-user__image" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= user.id %>">
               <% if user.photo.attached? %>
                 <%= cl_image_tag user.photo.key, height: 300, width: 300, crop: :fill, class: "" %>
               <% end %>
               <div class="card-user__infos d-flex justify-content-between align-items-center mb-4 mt-3">
                 <div class="d-flex flex-column justify-centent-center align-items-start">
-                    <%= link_to @name_user, users_path, class: "name-card-index" %>
-                    <% if user.experiences.first.present? %>
-                      <p class="job-card-index"><%= user.experiences.first.job_name %></p>
+                    <p class="name-card-index"><%= @name_user %></p>
+                    <% if user.experiences.last.present? %>
+                      <p class="job-card-index"><%= user.experiences.last.job_name %></p>
                     <% end %>
                 </div>
               </div>
@@ -38,26 +38,49 @@
           </div>
         </div>
         <%# #MODAL %>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal-<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
               <div class="modal-body">
+                <div class="text-end mb-2">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="mb-5 text-center">
+                  <% if user.photo.attached? %>
+                    <%= cl_image_tag user.photo.key, height: 180, width: 180, crop: :fill, class: "photo-modal" %>
+                  <% end %>
+                </div>
                 <% if user_signed_in? %>
-                  <p><%= user.available %></p>
-                  <p><%= user.address %></p>
+                  <% if user.experiences.last.present? %>
+                    <div class="d-flex align-items-center mt-3 mb-2">
+                      <p class= "company-name"><%= user.companies.last.name %></p>
+                      <%= cl_image_tag user.companies.last.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-dark ms-3" %>
+                    </div>
+                    <p class="experience-date mb-4"><%= "#{user.experiences.last.start_date} - #{user.experiences.last.end_date}" %></p>
+                    <p class="text-modal fw-bolder"><%= user.experiences.last.job_name %></p>
+                    <p class="text-modal"> <%= truncate(user.experiences.last.job_description, length: 150) %></p>
+                    <div class="resume-button-container mt-5 mx-auto">
+                      <%= link_to user_path(user), class:"btn btn-primary d-flex justify-content-between align-items-center resume-button" do %>
+                        <p class="ps-1"><%= "#{user.first_name} #{user.last_name}'s Resume" %></p> <i class="fa-solid fa-right-to-bracket pe-1"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
                 <% else %>
-                  <p class="blur-effect"><%= user.available %></p>
-                  <p class="blur-effect"><%= user.address %></p>
-                  <%= link_to "Log in", new_user_registration_path, class: 'btn btn-primary' %>
+                  <% if user.experiences.last.present? %>
+                    <div class="d-flex align-items-center mt-3 mb-2 blur-effect">
+                      <p class= "company-name"><%= user.companies.last.name %></p>
+                      <%= cl_image_tag user.companies.last.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-dark ms-3" %>
+                    </div>
+                    <p class="experience-date mb-4 blur-effect"><%= "#{user.experiences.last.start_date} - #{user.experiences.last.end_date}" %></p>
+                    <p class="text-modal fw-bolder"><%= user.experiences.last.job_name %></p>
+                    <p class="text-modal blur-effect"> <%= truncate(user.experiences.last.job_description, length: 150) %></p>
+                  <% end %>
+                  <div class="resume-button-container mt-5 mx-auto">
+                    <%= link_to user_path(user), class:"btn btn-primary d-flex justify-content-between align-items-center resume-button" do %>
+                      <p class="ps-1"><%= "#{user.first_name} #{user.last_name}'s Resume" %></p> <i class="fa-solid fa-right-to-bracket pe-1"></i>
+                    <% end %>
+                  </div>
                 <% end %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
