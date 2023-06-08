@@ -1,0 +1,16 @@
+<h1><%= @title %></h1>
+
+<%#  %>
+<%= simple_form_for [@user, @experience] do |f| %>
+  <%= f.association :company %>
+  <%= f.input :job_name, label: "Job Name" %>
+  <%= f.input :job_description, label: "Job Description" %>
+  <%= f.input :start_date, as: :date, label: "Start Date" %>
+  <%= f.input :end_date, as: :date, label: "End Date" %>
+  <%= f.input :skills, label: "Skills" %>
+
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
+
+
+  <%# <%= f.button :submit, value: "Update", class: "btn btn-primary" %>
