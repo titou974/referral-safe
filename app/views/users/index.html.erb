@@ -12,7 +12,7 @@
     <%# CARDS %>
     <div class="row row-cols-4">
       <% @users.each do |user| %>
-        <% @name_user = "#{user.first_name} #{user.last_name}" %>
+        <% name_user = "#{user.first_name} #{user.last_name}" %>
         <div class="col">
           <div class="card-user">
             <div class="card-user__image" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -21,7 +21,7 @@
               <% end %>
               <div class="card-user__infos d-flex justify-content-between align-items-center mb-4 mt-3">
                 <div class="d-flex flex-column justify-centent-center align-items-start">
-                    <%= link_to @name_user, users_path, class: "name-card-index" %>
+                    <%= link_to name_user, users_path, class: "name-card-index" %>
                     <% if user.experiences.first.present? %>
                       <p class="job-card-index"><%= user.experiences.first.job_name %></p>
                     <% end %>
