@@ -176,7 +176,11 @@ GEM
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    particles-js-rails (2.0.0)
     pg (1.5.3)
+    pg_search (2.3.6)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     popper_js (2.11.7)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -300,7 +304,9 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   nokogiri
+  particles-js-rails
   pg (~> 1.1)
+  pg_search
   puma (~> 5.0)
   pundit
   rails (~> 7.0.5)

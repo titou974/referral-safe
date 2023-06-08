@@ -196,13 +196,13 @@ end
 puts "#{Company.all.count} companies created"
 
 # Seed data for experiences
-25.times do
+100.times do
   experience = Experience.new(
     job_name: Faker::Job.title,
     job_description: job_description.sample,
     start_date: Faker::Date.backward(days: 365),
     end_date: Faker::Date.backward(days: 30),
-    skills: Faker::Job.key_skill
+    skills: Array.new(rand(2..3)) { Faker::Job.key_skill }
   )
   experience.user = User.all.sample
   experience.company = Company.all.sample
