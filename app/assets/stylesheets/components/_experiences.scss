@@ -1,0 +1,67 @@
+.experiences {
+  height: 8em;
+  width: 30%;
+  background-color: #5877FA;
+  font-size: 1em;
+  font-weight: 100;
+  color: white;
+}
+
+.experiences > h3 {
+  font-size: 0.8em;
+}
+
+.company-experiences > h5 {
+  font-size: 0.6em;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.avatar-company {
+  border-radius: 50%;
+  border: white 1px solid
+}
+
+.date-experience {
+  font-size: 0.5em;
+  font-style: italic;
+  font-weight: 100;
+}
+
+.experience-description {
+  font-size: 0.5em;
+  color: white;
+  font-weight: 300;
+}
+
+.see-more {
+  font-size: 0.6em;
+  font-weight: 600;
+  transition: transform 0.3s;
+  width: 40%;
+  color: white;
+}
+
+.see-more:hover {
+  transform: scale(1.05);
+  color: rgb(235, 234, 234)
+}
+
+
+.experiences-adding {
+  background-color: white;
+  border-style: solid 2px;
+  height: 8em;
+  width: 30%;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.experiences-adding:hover {
+  transform: scale(1.02);
+  box-shadow: 7px 7px 0 1px rgba(88, 119, 250, 1);
+  border: 2px solid #5877FA;
+}
+
+.experiences-adding > p {
+  font-size: 0.7em;
+  font-weight: 500;
+}
