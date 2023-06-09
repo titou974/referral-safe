@@ -2,3 +2,133 @@
   width: 100%;
   background-color: blue;
 }
+
+
+
+/*skill barr progress*/
+.skill_barre {
+  background-color: white;
+  border-radius: 20px;
+  padding-bottom: 20px;
+}
+
+.progress {
+  height: 20px;
+  border-radius:20px;
+  width: 80%;
+  margin-left: 20px;
+}
+
+.progress .skill .val {
+  float: right;
+  font-style: normal;
+}
+
+span {
+
+  display: grid;
+  position: relative;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform:uppercase;
+  color: blue;
+  line-height: 60px;
+  margin-bottom:6px;
+  margin-left: 25px;
+}
+
+/*skill loading*/
+.skill_loading {
+
+  height: 218px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+}
+
+.circle-wrap {
+  display: grid;
+
+  margin-left: 20px;
+  width: 150px;
+  height: 100px;
+}
+
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill-1,
+.circle-wrap .circle .fill-2,
+.circle-wrap .circle .fill-3 {
+  width: 150px;
+  height: 100px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.circle-wrap .circle .mask {
+  clip: 	rect(0px, 15px, 150px, 75px);
+}
+
+.mask .fill-1 {
+  clip: rect(0px, 150px, 0px);
+  background-color: blueviolet;
+}
+
+.mask.full-1
+.circle .fill-1 {
+  animation: fill-1 ease-in-out 3s;
+  transform: rotate(135deg);
+}
+@keyframes .fill-1{
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(153deg);}
+}
+
+.mask .fill-2 {
+  clip: rect(0px, 150px, 0px);
+  background-color: blueviolet;
+}
+
+.mask.full-2
+.circle .fill-2 {
+  animation: fill-1 ease-in-out 3s;
+  transform: rotate(135deg);
+}
+@keyframes .fill-2{
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(153deg);}
+}
+
+
+.mask .fill-3 {
+  clip: rect(0px, 150px, 0px);
+  background-color: blueviolet;
+}
+
+.mask.full-3
+.circle .fill-3 {
+  animation: fill-1 ease-in-out 3s;
+  transform: rotate(135deg);
+}
+@keyframes .fill-3{
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(153deg);}
+}
+
+.inside-circle  {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #212020;
+  line-height: 100px;
+  position: absolute;
+  margin-top: 13px;
+  margin-left: 13px;
+  z-index: 100;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
