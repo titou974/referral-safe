@@ -108,20 +108,36 @@
           </div>
         <% end %>
       </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="companies">
-            <% @user.experiences do |experience| %>
+      <div class="row justify-content-between">
+        <div class="col-6 bg-white rounded-4" style='width:48%!important'>
+          <h4 class="my-3">Company Worked</h4>
+          <div class="companies d-flex flex-wrap justify-content-between">
+            <% @user.experiences.each do |experience| %>
               <% if experience.company.photo.attached? %>
-                <div class="col-4">
-                  <%= cl_image_tag experience.company.photo.key, height: 300, width: 300, crop: :fill, class: "photo-modal" %>
-                  <%= experience.company.name %>
+                <div class="col-3 mb-2 company-card-container">
+                  <div class="company-card-container">
+                    <div class="company-card">
+                      <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "photo-modal"%>
+                      <div class="company-name">
+                        <%= experience.company.name %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               <% end %>
             <% end %>
           </div>
         </div>
-        <div class="col-6">bas gauche</div>
+          <div class="col-6 bg-white rounded-4" style='width:48%!important'>
+            <h4 class="my-3">ChatRoom</h4>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="col-4 text-center d-flex flex-column justify-content-center align-items-center chatroom m-2">
+                <i class="fa-regular fa-comments fa-2xl" style="color: #5877FA;"></i>
+                <p class="my-3">Start a new conversation</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
