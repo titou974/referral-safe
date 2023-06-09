@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   get '/resume', to: 'pages#resume'
 
   resources :users, only: [:create, :edit, :update, :show, :index] do
-    resources :experiences, only: [:create, :update, :destroy]
+    resources :experiences, only: [:create, :destroy]
     resources :roles, only: [:create, :update, :destroy]
   end
   resources :companies, only: [:create, :update, :destroy]
 
-
+  patch "experiences/:id", to: "experiences#certify"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

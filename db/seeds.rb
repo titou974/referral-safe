@@ -327,7 +327,8 @@ puts "#{User.all.count} users created"
     job_description: job_descriptions[random_index],
     start_date: Faker::Date.backward(days: 365),
     end_date: Faker::Date.backward(days: 30),
-    skills: Array.new(rand(2..3)) { Faker::Job.key_skill }
+    skills: Array.new(rand(2..3)) { Faker::Job.key_skill },
+    certified: true
   )
   experience.user = User.all.sample
   experience.company = Company.all.sample

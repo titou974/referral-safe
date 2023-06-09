@@ -20,6 +20,10 @@ class ExperiencesController < ApplicationController
     end
   end
 
+  def certify
+    raise
+  end
+
   def destroy
   end
 
