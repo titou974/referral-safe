@@ -95,14 +95,14 @@
                     data-action="click->display-modal-form#displayForm">
                       <%= "#{user.first_name} #{user.last_name}'s Resume" %> <i class="fa-solid fa-right-to-bracket pe-1"></i>
                     </button>
-                      <%= simple_form_for [current_user, @role], html: {
+                      <%= simple_form_for [user, @role], html: {
                         class: "d-none",
                         data: {
                           display_modal_form_target: "form"
                         }
                       } do |f| %>
                         <%= f.input :recruiter %>
-                        <%= f.input :company %>
+                        <%= f.association :company %>
                         <%= f.button :submit, class: "btn btn-primary" %>
                       <% end %>
                   </div>
