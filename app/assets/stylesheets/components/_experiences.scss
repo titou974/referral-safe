@@ -7,6 +7,22 @@
   color: white;
 }
 
+.experiences-none {
+  height: 8em;
+  width: 30%;
+  background-color: #ff8b07;
+  font-size: 1em;
+  font-weight: 100;
+  color: white;
+}
+
+.absolute-alert {
+  position: absolute;
+  right: 112px;
+  bottom: 290px
+
+}
+
 .experiences > h3 {
   font-size: 0.8em;
 }
@@ -47,6 +63,18 @@
   color: rgb(235, 234, 234)
 }
 
+.see-more-validate {
+  font-size: 0.6em;
+  font-weight: 600;
+  transition: transform 0.3s;
+  width: 60%;
+  color: white;
+}
+
+.see-more-validate:hover {
+  transform: scale(1.05);
+  color: rgb(235, 234, 234)
+}
 
 .experiences-adding {
   background-color: white;
@@ -64,4 +92,8 @@
 .experiences-adding > p {
   font-size: 0.7em;
   font-weight: 500;
+}
+
+.pending-border {
+  border: 3px solid #ff8b07;
 }
