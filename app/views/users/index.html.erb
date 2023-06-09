@@ -59,11 +59,24 @@
                     <p class="experience-date mb-4"><%= "#{user.experiences.last.start_date} - #{user.experiences.last.end_date}" %></p>
                     <p class="text-modal fw-bolder"><%= user.experiences.last.job_name %></p>
                     <p class="text-modal"> <%= truncate(user.experiences.last.job_description, length: 150) %></p>
-                    <div class="resume-button-container mt-5 mx-auto">
-                      <%= link_to user_path(user), class:"btn btn-primary d-flex justify-content-between align-items-center resume-button" do %>
-                        <p class="ps-1"><%= "#{user.first_name} #{user.last_name}'s Resume" %></p> <i class="fa-solid fa-right-to-bracket pe-1"></i>
+
+
+                  <div class="resume-button-container mt-5 mx-auto" data-controller="display-modal-form">
+                    <button class="btn btn-primary d-flex justify-content-between align-items-center resume-button"
+                    data-action="click->display-modal-form#displayForm">
+                      <%= "#{user.first_name} #{user.last_name}'s Resume" %> <i class="fa-solid fa-right-to-bracket pe-1"></i>
+                    </button>
+                      <%= simple_form_for [user, @role], html: {
+                        class: "d-none",
+                        data: {
+                          display_modal_form_target: "form"
+                        }
+                      } do |f| %>
+                        <%= f.input :recruiter %>
+                        <%= f.association :company %>
+                        <%= f.button :submit, class: "btn btn-primary" %>
                       <% end %>
-                    </div>
+                  </div>
                   <% end %>
                 <% else %>
                   <% if user.experiences.last.present? %>
@@ -82,16 +95,16 @@
                     data-action="click->display-modal-form#displayForm">
                       <%= "#{user.first_name} #{user.last_name}'s Resume" %> <i class="fa-solid fa-right-to-bracket pe-1"></i>
                     </button>
-                    <%= simple_form_for :coucou, html: {
-                      class: "d-none",
-                      data: {
-                        display_modal_form_target: "form"
-                      }
-                    } do |f| %>
-                      <%= f.input :role %>
-                      <%= f.input :company %>
-                      <%= f.button :submit, class: "btn btn-primary" %>
-                    <% end %>
+                      <%= simple_form_for [current_user, @role], html: {
+                        class: "d-none",
+                        data: {
+                          display_modal_form_target: "form"
+                        }
+                      } do |f| %>
+                        <%= f.input :recruiter %>
+                        <%= f.input :company %>
+                        <%= f.button :submit, class: "btn btn-primary" %>
+                      <% end %>
                   </div>
 
 
