@@ -1,4 +1,51 @@
 .sidebar {
   width: 100%;
-  background-color: blue;
+  height: 100vh;
+  border-radius: 20px;
 }
+
+.skill_barre {
+  width: 314px;
+  height: 535px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.skill_loading {
+  width: 314px;
+  height: 265px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+/*skill barr progress*/
+
+.progress {
+  height: 20px;
+  border-radius:20px;
+  width: 80%;
+  margin-left: inherit;
+}
+
+.progress .skill .val {
+  float: right;
+  font-style: normal;
+}
+
+span {
+
+  display: grid;
+  position: relative;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform:uppercase;
+  color: blue;
+  line-height: 60px;
+  margin-bottom:6px;
+  margin-left: 25px;
+}
+
+/*skill spinner*/
+
