@@ -1,45 +1,126 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-3">
-      <div class="">
-        Carte du haut
+      <div class="my-3">
       </div>
-      <div class="">
+      <div class="my-3">
         Carte du bas
       </div>
     </div>
     <div class="col-9">
-      <div class="">
-        Div du haut
-      </div>
-      <div class="row">
-        <div class="card col-4 border rounded-4 text-center">
-          <i class="fas fa-plus-circle fa-2x mt-5 text-primary" style="color: #5877FA;"></i>
-          <div class="mb-3">Add an Experience</div>
+      <div class="profil my-3 d-flex justify-content-between">
+        <div class="infos-candidate">
+          <% if @user.photo.attached? %>
+            <%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill, class: "avatar" %>
+          <% end %>
+          <p><%= "#{@user.first_name} #{@user.last_name}" %></p>
+          <p><%= @user.experiences.last.job_name %></p>
         </div>
-        <% @user.experiences.each do |experience| %>
-          <div class="card col-4 border rounded-4 experiences">
-              <strong>
-              <%= experience.job_name %> <br>
-              </strong>
-            <div class="card-body fs-6 text-truncate">
-              <p class="fw-lighter text-muted">
-                <%= experience.start_date %>
-                <%= experience.end_date %>
-              </p>
-              <small>
-                <%= experience.job_description %>
-              </small>
+        <div class="exit-resume">
+          <%= link_to users_path, class: "btn btn-primary d-flex justify-content-between align-items-center go-back" do %>
+            <i class="fa-solid fa-door-open pe-2"></i> <p class="ps-2">Go back</p>
+          <% end %>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-4 rounded-4 text-center d-flex flex-column justify-content-center align-items-center experiences-adding m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fas fa-plus-circle my-1" style="color: #5877FA;"></i>
+          <p class="my-1">Add an Experience</p>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <%= simple_form_for [@user, @experience] do |f| %>
+                  <%= f.association :company %>
+                  <%= f.input :job_name, label: "Job Name" %>
+                  <%= f.input :job_description, label: "Job Description" %>
+                  <%= f.input :start_date, as: :date, label: "Start Date" %>
+                  <%= f.input :end_date, as: :date, label: "End Date" %>
+                  <%= f.input :skills, label: "Skills" %>
+                  <%= f.button :submit, class: "btn btn-primary" %>
+                <% end %>
+              </div>
             </div>
           </div>
-          <div class="card col-4 d-none">
-            <div class="card-body">
-            </div>
+        </div>
+        <% @user.experiences.each do |experience| %>
+          <div class="col-4 border rounded-4 experiences m-2 py-2 px-3">
+            <% if user_signed_in? %>
+              <h3><%= experience.job_name %></h3>
+              <div class="d-flex align-items-center company-experiences mt-2 mb-1">
+                <h5 class="mb-0"><%= experience.company.name %></h5>
+                <%= cl_image_tag experience.company.photo.key, height: 30, width: 30, crop: :fill, class: "ms-2 avatar-company" %>
+              </div>
+              <p class="date-experience">
+                <%= "#{experience.start_date} - #{experience.end_date}" %>
+              </p>
+              <p class="experience-description mt-2 mb-2">
+                <%= truncate(experience.job_description, length: 90) %>
+              </p>
+              <div class="see-more d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
+                <p class="me-1">See More</p><i class="fa-solid fa-chevron-left ms-1"></i>
+              </div>
+            <% else %>
+              <h3><%= experience.job_name %></h3>
+              <div class="d-flex align-items-center company-experiences mt-2 mb-1 blur-effect-card">
+                <h5 class="mb-0"><%= experience.company.name %></h5>
+                <%= cl_image_tag experience.company.photo.key, height: 30, width: 30, crop: :fill, class: "ms-2 avatar-company" %>
+              </div>
+              <p class="date-experience blur-effect-card">
+                <%= "#{experience.start_date} - #{experience.end_date}" %>
+              </p>
+              <p class="experience-description mt-2 mb-2 blur-effect-card">
+                <%= truncate(experience.job_description, length: 90) %>
+              </p>
+              <div class="see-more d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
+                <p class="me-1">See More</p><i class="fa-solid fa-chevron-left ms-1"></i>
+              </div>
+            <% end %>
+              <div class="modal fade" id="exampleModal-<%= experience.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="text-end mb-2">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <% if user_signed_in? %>
+                        <div class="d-flex align-items-center mt-3 mb-2">
+                          <p class= "company-name"><%= experience.company.name %></p>
+                          <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-dark ms-3" %>
+                        </div>
+                        <p class="experience-date mb-4"><%= "#{experience.start_date} - #{experience.end_date}" %></p>
+                        <p class="text-modal fw-bolder"><%= experience.job_name %></p>
+                        <p class="text-modal"> <%= experience.job_description  %></p>
+                      <% else %>
+                        <div class="d-flex align-items-center mt-3 mb-2">
+                          <p class= "company-name"><%= experience.company.name %></p>
+                          <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-dark ms-3" %>
+                        </div>
+                        <p class="experience-date mb-4"><%= "#{experience.start_date} - #{experience.end_date}" %></p>
+                        <p class="text-modal fw-bolder"><%= experience.job_name %></p>
+                        <p class="text-modal"> <%= experience.job_description %></p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
         <% end %>
       </div>
       <div class="row">
-        <div class="col-6">bas droite</div>
+        <div class="col-6">
+          <div class="companies">
+            <% @user.experiences do |experience| %>
+              <% if experience.company.photo.attached? %>
+                <div class="col-4">
+                  <%= cl_image_tag experience.company.photo.key, height: 300, width: 300, crop: :fill, class: "photo-modal" %>
+                  <%= experience.company.name %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
         <div class="col-6">bas gauche</div>
       </div>
     </div>
@@ -47,16 +128,5 @@
 </div>
 
 
-            <% if false %>
-              <%= simple_form_for [@user, @experience] do |f| %>
-                <%= f.association :company %>
-                <%= f.input :job_name, label: "Job Name" %>
-                <%= f.input :job_description, label: "Job Description" %>
-                <%= f.input :start_date, as: :date, label: "Start Date" %>
-                <%= f.input :end_date, as: :date, label: "End Date" %>
-                <%= f.input :skills, label: "Skills" %>
 
-                <%= f.button :submit, class: "btn btn-primary" %>
-              <% end %>
-              <%# <%= f.button :submit, value: "Update", class: "btn btn-primary" %>
-            <% end %>
+<%# <%= f.button :submit, value: "Update", class: "btn btn-primary" %>
