@@ -23,56 +23,9 @@
             <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 80%">80%</div>
           </div>
         </div>
-      <div class="skill_loading">
-        <%# circle progress 1 %>
-        <div class="circle-wrap">
-          <div class="circle">
-          <%# 1 part %>
-            <div class="mask full-1">
-              <div class="fill-1"></div>
-            </div>
-            <%# 2part %>
-            <div class="mask half">
-              <div class="fill-1"></div>
-            </div>
-            <div class="inside-circle">85%</div>
-          </div>
-        </div>
-
-        <%# circle progress 2 %>
-        <div class="circle-wrap">
-          <div class="circle">
-              <%# 1 part %>
-            <div class="mask full-1">
-              <div class="fill-2"></div>
-            </div>
-            <%# 2part %>
-            <div class="mask half">
-              <div class="fill-2"></div>
-            </div>
-            <div class="inside-circle">85%</div>
-          </div>
-        </div>
-
-         <%# circle progress 3 %>
-        <div class="circle-wrap">
-          <div class="circle">
-              <%# 1 part %>
-            <div class="mask full-3">
-              <div class="fill-1"></div>
-            </div>
-            <%# 2part %>
-            <div class="mask half">
-              <div class="fill-3"></div>
-            </div>
-            <div class="inside-circle">85%</div>
-          </div>
-        </div>
-
-      </div>
     </div>
     <div class="col-9">
-      <div class="profil my-3 d-flex justify-content-between">
+      <div class="profil bg-white rounded-4 my-3 d-flex justify-content-between">
         <div class="infos-candidate">
           <% if @user.photo.attached? %>
             <%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill, class: "avatar" %>
