@@ -21,7 +21,12 @@ class ExperiencesController < ApplicationController
   end
 
   def certify
-    raise
+    @experience = Experience.find(params[:id])
+    @experience.certified = true
+    if @experience.save
+      redirect_to user_path(@experience.user.id)
+    end
+
   end
 
   def destroy
