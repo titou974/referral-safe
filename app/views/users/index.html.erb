@@ -40,7 +40,7 @@
         <%# #MODAL %>
         <div class="modal fade" id="exampleModal-<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content no-scrollbar">
               <div class="modal-body">
                 <div class="text-end mb-2">
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -75,11 +75,26 @@
                     <p class="text-modal fw-bolder"><%= user.experiences.last.job_name %></p>
                     <p class="text-modal blur-effect"> <%= truncate(user.experiences.last.job_description, length: 150) %></p>
                   <% end %>
-                  <div class="resume-button-container mt-5 mx-auto">
-                    <%= link_to user_path(user), class:"btn btn-primary d-flex justify-content-between align-items-center resume-button" do %>
-                      <p class="ps-1"><%= "#{user.first_name} #{user.last_name}'s Resume" %></p> <i class="fa-solid fa-right-to-bracket pe-1"></i>
+
+
+                  <div class="resume-button-container mt-5 mx-auto" data-controller="display-modal-form">
+                    <button class="btn btn-primary d-flex justify-content-between align-items-center resume-button"
+                    data-action="click->display-modal-form#displayForm">
+                      <%= "#{user.first_name} #{user.last_name}'s Resume" %> <i class="fa-solid fa-right-to-bracket pe-1"></i>
+                    </button>
+                    <%= simple_form_for :coucou, html: {
+                      class: "d-none",
+                      data: {
+                        display_modal_form_target: "form"
+                      }
+                    } do |f| %>
+                      <%= f.input :role %>
+                      <%= f.input :company %>
+                      <%= f.button :submit, class: "btn btn-primary" %>
                     <% end %>
                   </div>
+
+
                 <% end %>
               </div>
             </div>
