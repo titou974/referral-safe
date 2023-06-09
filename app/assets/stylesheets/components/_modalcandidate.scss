@@ -9,8 +9,11 @@
   background-clip: padding-box;
   border: 3px solid #5877FA;
   border-radius: 2em;
+  max-height: 90vh;
+  overflow-y: auto;
   outline: 0;
   padding: 2em;
+  scroll-behavior: smooth;
 }
 
 .photo-modal {

@@ -23,7 +23,9 @@
               <% if current_user.role.present? %>
                 <%= cl_image_tag current_user.company.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
               <% else %>
-                <%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
+                <% if current_user.photo.attached? %>
+                  <%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
+                <% end %>
               <% end %>
             </a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
