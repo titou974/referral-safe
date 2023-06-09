@@ -25,6 +25,8 @@
               <% else %>
                 <% if current_user.photo.attached? %>
                   <%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
+                <% else %>
+                  <i class="fa fa-user" aria-hidden="true"></i>
                 <% end %>
               <% end %>
             </a>

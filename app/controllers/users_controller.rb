@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    @role = Role.new
     if params[:query].present?
       @users = User.where(available: true).includes(:role).where(roles: { id: nil }).search_by_first_name_and_last_name(params[:query])
     else
