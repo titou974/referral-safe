@@ -1,6 +1,7 @@
 .form-control {
   display: block;
-  width: 16em;
+  width: 27em;
+  height: 3em;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -12,7 +13,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 1em;
+  border-radius: 10px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -53,7 +54,7 @@
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #0D6EFD;
   --bs-btn-disabled-border-color: #0D6EFD;
-    border-radius: 3em;
+    border-radius: 10px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -63,4 +64,9 @@
 
 .btn:active {
   box-shadow: 0px 0px 0 1px rgb(88, 119, 250)
+}
+
+.search {
+  border-radius: 5px;
+  width: 4em;
 }
