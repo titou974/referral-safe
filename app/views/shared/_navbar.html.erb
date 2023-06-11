@@ -7,7 +7,13 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+    <% if user_signed_in? && action_name == "show" && current_user.role.present? %>
+      <div class="exit-resume">
+        <%= link_to users_path, class: "btn btn-primary d-flex justify-content-between align-items-center go-back" do %>
+          <i class="fa-solid fa-door-open pe-2"></i> <p class="ps-2">Go back</p>
+        <% end %>
+      </div>
+    <% end %>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
@@ -20,14 +26,12 @@
 
             <li class="nav-item dropdown d-flex align-items-center justify-content-center">
             <a href="#" class="" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <% if current_user.role.present? %>
+              <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
+              <% elsif current_user.role.present? %>
                 <%= cl_image_tag current_user.company.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
               <% else %>
-                <% if current_user.photo.attached? %>
-                  <%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "avatar rounded-circle" %>
-                <% else %>
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                <% end %>
+                <i class="fa fa-user" aria-hidden="true"></i>
               <% end %>
             </a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

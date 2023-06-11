@@ -357,12 +357,11 @@ user_1 = User.create(
   first_name: "Laura",
   last_name: "Lotran",
   password: "123456",
-  address: "1 ter rue des mauvais garçons",
-  available: true
+  address: "1 ter rue des mauvais garçons"
 )
 puts "user test candidate created"
 
-user_2 = User.new(
+user_2 = User.create(
   email: "recruiter@safe.test",
   first_name: "Joe",
   last_name: "Jolie",
@@ -379,7 +378,17 @@ role.save
 user_2.role = role
 
 user_2.save
-puts "user test recruiter created"
+puts "user test recruiter without company created"
+
+user_3 = User.create(
+  email: "ceo@safe.test",
+  first_name: "Elon",
+  last_name: "Musk",
+  password: "123456",
+  address: "5 rue Montmartre"
+)
+
+puts "CEO test created"
 
 company = Company.new(
   name: "ACME Corporation",

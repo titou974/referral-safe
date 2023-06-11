@@ -1,9 +1,13 @@
 .button-home {
-  width: 65%;
-  padding: 1% 2%;
+  width: 40%;
+  padding: 1.6em;
 }
 
 .button-home > p {
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 500;
+}
+
+.button-home:hover {
+  border: 3px solid #5877FA;
 }

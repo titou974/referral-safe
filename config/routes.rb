@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :edit, :update, :show, :index] do
     resources :experiences, only: [:create, :destroy]
     resources :roles, only: [:create, :update, :destroy]
+    resources :companies, only: [:create]
   end
-  resources :companies, only: [:create, :update, :destroy]
+  resources :companies, only: [:update, :destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
