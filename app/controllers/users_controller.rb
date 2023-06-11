@@ -12,13 +12,18 @@ class UsersController < ApplicationController
   end
 
   def create
-
   end
 
   def edit
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -32,14 +37,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :first_name, :last_name, :available, :address)
-  end
-
-  def role_params
-    params.require(:role).permit(:admin, :recruiter)
-  end
-
-  def company_params
-    params.require(:company).permit(:name, :sector, :size, :siret, :photo)
   end
 
 end
