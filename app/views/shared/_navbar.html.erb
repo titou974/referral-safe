@@ -18,9 +18,8 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <div class="d-flex justify-content-end">
-            <li class="nav-item active">
-              <%= link_to "#", class: "nav-link avatar-out" do %>
-                <i class="fa-regular fa-comment"></i>
+            <li <%= link_to root_path, class: "navbar-brand" do %>>
+              <i class="fa-light fa-comment"></i>
               <% end %>
             </li>
 
