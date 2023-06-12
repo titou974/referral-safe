@@ -4,6 +4,7 @@ class ExperiencesController < ApplicationController
     @user = User.find(params[:user_id])
     @experience = Experience.new(experience_params)
     @experience.user = @user
+    @experience.end_date = params[:experience][:start_date][14..23]
     if @experience.save
       redirect_to user_path(@user)
     else

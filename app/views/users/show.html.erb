@@ -84,8 +84,8 @@
                     <%= f.association :company %>
                     <%= f.input :job_name, label: "Job Name" %>
                     <%= f.input :job_description, label: "Job Description" %>
-                    <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-                    <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+                    <%= f.input :start_date, as: :string, label: 'Dates', input_html: { data: { controller: "datepicker" } } %>
+                    <%= f.input :end_date, as: :string, wrapper_html: { class: 'd-none' }, input_html: { data: { controller: "datepicker" } } %>
                     <%= f.input :skills, label: "Skills" %>
                     <%= f.button :submit, class: "btn btn-primary" %>
                   <% end %>
