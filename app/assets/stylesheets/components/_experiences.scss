@@ -78,7 +78,7 @@
 
 .experiences-adding {
   background-color: white;
-  border-style: solid 2px;
+  border: 2px solid #5877FA;
   height: 8em;
   width: 30%;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -86,7 +86,6 @@
 .experiences-adding:hover {
   transform: scale(1.02);
   box-shadow: 7px 7px 0 1px rgba(88, 119, 250, 1);
-  border: 2px solid #5877FA;
 }
 
 .experiences-adding > p {
