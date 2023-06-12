@@ -1,0 +1,50 @@
+.container {
+  display: grid;
+  justify-content: center;
+}
+
+.login-all {
+  background: white;
+  max-width: 500px;
+  padding: 50px;
+  margin-top: 50px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0.5px 0.5px #EFEFEF, 0px 1px 0.5px rgba(239, 239, 239, 0.5);
+}
+
+.login-letter {
+  display: grid;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.form-actions_login {
+  display: grid;
+  justify-content: center;
+  background-color: #5877FA;
+  margin: 30px;
+  border-radius: 10px;
+}
+
+.form-actions_login .btn {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.links_signup a {
+  text-decoration: none;
+}
+
+.form-check-label {
+  margin-top: 5px;
+}
+
+.form-check-input {
+  margin-top: 10px;
+}
+
+.form-label_login {
+  margin-bottom: 20px;
+}
