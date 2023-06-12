@@ -1,20 +1,25 @@
-<h2>Log in</h2>
+<div class="container-sign">
+  <div class="login-all">
+    <h2 class="login-letter">Login</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email", placeholder: "satoshi@gmail.com" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password", placeholder: "safemymdp123" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+      <div class="form-label_login">
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email", placeholder: "satoshi@gmail.com" } %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "current-password", placeholder: "safemymdp123" } %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions_login">
+        <%= f.button :submit, "Login" %>
+      </div>
+    <% end %>
+      <div class="links_signup">
+    <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

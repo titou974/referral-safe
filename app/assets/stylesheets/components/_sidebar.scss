@@ -10,6 +10,7 @@
   background-color: white;
   border-radius: 20px;
   padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .progress {
@@ -36,6 +37,13 @@
 //   margin-bottom:6px;
 //   margin-left: 25px;
 // }
+
+.letter {
+  display: grid;
+  margin-left: 25px;
+  line-height: 45px;
+}
+
 
 /*skill loading*/
 .skill_loading {
