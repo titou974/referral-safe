@@ -2,7 +2,10 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     current_user.company = @company
-    @company.save
+    
+    unless @company.save
+      render status: :unprocessable_entity
+    end
   end
 
   def update
