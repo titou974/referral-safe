@@ -25,16 +25,57 @@
         </div>
     </div>
     <div class="col-9">
-      <div class="profil bg-white my-3 p-3">
-        <% if current_user == @user %>
-          <h1 class="title-dashboard text-center mb-5">Welcome on your Dashboard, <span><%= @user.first_name %></span></h1>
-        <% end  %>
+      <div class="profil bg-white my-3 -p3">
+        <h1 class="title-dashboard text-center mb-5">Welcome on your Dashboard<% if current_user == @user && @user.first_name != nil %>, <span><%= @user.first_name %></span> <% end %></h1>
         <div class="d-flex justify-content-between">
           <div class="infos-candidate d-flex flex-column">
-            <% if @user.photo.attached? %>
-              <%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill, class: "avatar" %>
+            <% if current_user == @user  %>
+              <div data-controller="edit-dashboard" data-edit-dashboard-target="profilinfos">
+                <div class="profil-infos" data-edit-dashboard-target="infos">
+                  <% if @user.photo.attached? %>
+                    <div class="background-photo my-3">
+                      <div class="background-pen-photo" data-action="click->edit-dashboard#displayFormDashboard">
+                        <i class="fa-solid fa-pen fa-2xs pen"></i>
+                      </div>
+                      <%= cl_image_tag(@user.photo.key, height: 100, width: 100, crop: :fill, class: "rounded-circle") %>
+                    </div>
+                  <% else %>
+                    <div class="avatar-empty my-3">
+                      <i class="fa fa-user fa-lg" aria-hidden="true" style="color:white"></i>
+                      <div class="background-pen-photo" data-action="click->edit-dashboard#displayFormDashboard">
+                        <i class="fa-solid fa-pen fa-2xs pen"></i>
+                      </div>
+                    </div>
+                  <% end %>
+                  <div class="d-flex align-items-center my-3">
+                    <p><%=  @user.first_name.present? ? @user.first_name : "First name"%></p>
+                    <div class="background-pen ms-3" data-action="click->edit-dashboard#displayFormDashboard">
+                      <i class="fa-solid fa-pen pen"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center my-3">
+                    <p><%=  @user.last_name.present? ? @user.last_name : "Last name"%></p>
+                    <div class="background-pen ms-3" data-action="click->edit-dashboard#displayFormDashboard">
+                      <i class="fa-solid fa-pen pen"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center my-3">
+                    <p><%= @user.available ? "Available" : "Unavailable" %></p>
+                    <div class="background-pen ms-3" data-action="click->edit-dashboard#displayFormDashboard">
+                      <i class="fa-solid fa-pen pen"></i>
+                    </div>
+                  </div>
+                </div>
+                <%= simple_form_for @user, html: {class: "d-none", data: {edit_dashboard_target: "form", action: 'submit->edit_dashboard#update'}} do |f| %>
+                  <%= f.input :photo, as: :file, label: false, input_html: { class: 'my-3 dashboard-input', value: @user.photo.attached? ? cl_image_tag(@user.photo.key, height: 100, width: 100, crop: :fill, class: "rounded-circle") : "<i class='fa fa-user fa-lg' aria-hidden='true' style='color:white'></i>".html_safe } %>
+                  <%= f.input :first_name, label: false, input_html: { class: 'my-3 dashboard-input', value: @user.first_name.present? ? @user.first_name : "First name" }  %>
+                  <%= f.input :last_name, label: false, input_html: { class: 'my-3 dashboard-input', value: @user.last_name.present? ? @user.last_name : "Last name" } %>
+                  <%= f.input :available %>
+                  <%= f.submit %>
+                <% end %>
+              </div>
             <% end %>
-            <p><%= "#{@user.first_name} #{@user.last_name}" %></p>
+            <%# <p><%= "#{@user.first_name} #{@user.last_name}"<p> %>
             <% if @user.experiences.present? %>
               <p><%= @user.experiences.last.job_name %></p>
             <% end %>
@@ -90,6 +131,10 @@
             <% elsif experience.certified? == false && current_user.role.present? %>
               <div class="see-more-validate d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
                 <p class="me-1">Certify XP</p><i class="fa-solid fa-chevron-left ms-1"></i>
+              </div>
+            <% else %>
+              <div class="see-more d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
+                <p class="me-1">See More</p><i class="fa-solid fa-chevron-left ms-1"></i>
               </div>
             <% end %>
             <div class="modal fade" id="exampleModal-<%= experience.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
