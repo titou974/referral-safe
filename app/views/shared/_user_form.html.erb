@@ -1,0 +1,19 @@
+<%= simple_form_for @user, html: {class: "d-none", data: {edit_dashboard_target: "form", action: 'submit->edit_dashboard#update'}} do |f| %>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="photo-container-input my-3">
+      <%= f.input :photo, as: :file, label: false, input_html: { class: 'form-control-user-photo is-valid-user-photo', value: @user.photo.attached? ? cl_image_tag(@user.photo.key, height: 100, width: 100, crop: :fill, class: "rounded-circle") : "<div class='avatar-empty my-3'> <i class='fa fa-user fa-lg' aria-hidden='true' style='color:white'></i></div>".html_safe } %>
+    </div>
+    <div class="d-flex flex-column justify-content-center">
+      <div class="status-container mt-2">
+        <%= f.input :available, input_html: { class: "status-user" } %>
+      </div>
+      <div class="d-flex justify-content-center align-items-center mb-5">
+        <%= f.input :first_name, label: false, input_html: { class: 'form-control-user delete-valid-user', value: @user.first_name.present? ? @user.first_name : "First name" } %>
+        <%= f.input :last_name, label: false, input_html: { class: 'form-control-user is-valid-user', value: @user.last_name.present? ? @user.last_name : "Last name" } %>
+      </div>
+    </div>
+  </div>
+  <div class="text-center ">
+    <%= f.submit input_html: { class: 'btn btn-primary', value: "Update", disable_with:"Update" }%>
+  </div>
+<% end %>
