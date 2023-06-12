@@ -50,6 +50,8 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 gem "pundit"
 gem "faker"
+gem 'acts-as-taggable-on', '~> 9.0'
+
 
 # gem faker for feeding the seed
 gem "faker"

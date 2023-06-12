@@ -1,26 +1,41 @@
 .experiences {
   height: 8em;
   width: 30%;
-  background-color: #5877FA;
+  background-color: #ffffff;
   font-size: 1em;
   font-weight: 100;
-  color: white;
+  color: #000000;
+  position: relative;
+  border: 2px solid #5877FA;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.experiences:hover {
+  transform: scale(1.02);
+  box-shadow: 7px 7px 0 1px rgb(88, 119, 250)
 }
 
 .experiences-none {
+  border: 2px solid #ff8b07;
   height: 8em;
   width: 30%;
-  background-color: #ff8b07;
+  background-color: #ffffff;
   font-size: 1em;
   font-weight: 100;
-  color: white;
+  color: black;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.experiences-none:hover {
+  transform: scale(1.02);
+  box-shadow: 7px 7px 0 1px rgb(255, 139, 7)
 }
 
 .absolute-alert {
   position: absolute;
-  right: 112px;
-  bottom: 290px
-
+  right: 6px;
+  top: 3px
 }
 
 .experiences > h3 {
@@ -46,34 +61,34 @@
 
 .experience-description {
   font-size: 0.5em;
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: 300;
 }
 
 .see-more {
-  font-size: 0.6em;
+  font-size: 1em;
   font-weight: 600;
   transition: transform 0.3s;
   width: 40%;
-  color: white;
+  color: #5877FA;
 }
 
 .see-more:hover {
   transform: scale(1.05);
-  color: rgb(235, 234, 234)
+  color: rgb(73, 73, 73)
 }
 
 .see-more-validate {
-  font-size: 0.6em;
+  font-size: 1em;
   font-weight: 600;
   transition: transform 0.3s;
   width: 60%;
-  color: white;
+  color: #ff8b07;
 }
 
 .see-more-validate:hover {
   transform: scale(1.05);
-  color: rgb(235, 234, 234)
+  color: rgb(73, 73, 73);
 }
 
 .experiences-adding {
