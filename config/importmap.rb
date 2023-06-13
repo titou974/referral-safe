@@ -12,6 +12,10 @@ pin "@rails/actioncable", to: "https://cdn.jsdelivr.net/npm/@rails/actioncable@7
 pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/index.js"
 
 
+pin "tom-select", to: "https://ga.jspm.io/npm:tom-select@2.2.2/dist/js/tom-select.complete.js"
+
+
 pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.0/dist/jquery.js"
 pin "progressbar.js", to: "https://ga.jspm.io/npm:progressbar.js@1.1.0/src/main.js"
 pin "shifty", to: "https://ga.jspm.io/npm:shifty@2.20.4/dist/shifty.js"
+

@@ -4,8 +4,11 @@ class UsersController < ApplicationController
   def index
     @role = Role.new
     @company = Company.new
+    @skills = ActsAsTaggableOn::Tag.for_context(:skills).map{ |tag| tag.name }
     if params[:query].present?
-      @users = User.where(available: true).includes(:role).where(roles: { id: nil }).search_by_first_name_and_last_name(params[:query])
+      @users = User.where(available: true).includes(:role).where(roles: { id: nil }).search_by_first_name_and_last_name_and_skills(params[:query])
+    elsif params[:choices].present?
+      @users = User.where(available: true).includes(:role).where(roles: { id: nil }).search_by_first_name_and_last_name_and_skills(params[:choices])
     else
       @users = User.where(available: true).includes(:role).where(roles: { id: nil })
     end
