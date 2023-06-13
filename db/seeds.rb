@@ -397,3 +397,11 @@ company = Company.new(
   siret: "1234567890"
 )
 puts "company test created"
+
+chatroom = Chatroom.create(
+  name: "#{user_1.first_name}")
+
+chatroom = Chatroom.create(
+  name: "#{user_2.first_name}")
+
+puts "chatroom test created"
