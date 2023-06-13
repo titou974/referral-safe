@@ -126,30 +126,30 @@
                 <p class="me-1">See More</p><i class="fa-solid fa-chevron-left ms-1"></i>
               </div>
             <% end %>
-            <div class="modal fade" id="exampleModal-<%= experience.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <div class="text-end">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                      <p class= "company-name"><%= experience.company.name %></p>
-                      <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-dark ms-3" %>
-                    </div>
-                    <p class="experience-date mb-4"><%= "#{experience.start_date} - #{experience.end_date}" %></p>
-                    <p class="text-modal fw-bolder"><%= experience.job_name %></p>
-                    <p class="text-modal"> <%= experience.job_description  %></p>
-                    <% if experience.certified? == false && current_user.role.present? %>
-                      <div class="d-flex justify-content-center mt-5">
-                        <div data-controller="alert" data-action="click->alert#showAlert">
-                          <%= link_to certify_path(experience),   data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} do %>
-                            <button type="button" class="btn btn-primary" id="liveAlertBtn">Certify XP</button>
-                          <% end %>
-                        </div>
-                      </div>
-                    <% end %>
+          </div>
+          <div class="modal fade" id="exampleModal-<%= experience.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="text-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
+                  <div class="d-flex align-items-center mb-2">
+                    <p class= "company-name"><%= experience.company.name %></p>
+                    <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-dark ms-3" %>
+                  </div>
+                  <p class="experience-date mb-4"><%= "#{experience.start_date} - #{experience.end_date}" %></p>
+                  <p class="text-modal fw-bolder"><%= experience.job_name %></p>
+                  <p class="text-modal"> <%= experience.job_description  %></p>
+                  <% if experience.certified? == false && current_user.role.present? %>
+                    <div class="d-flex justify-content-center mt-5">
+                      <div data-controller="alert" data-action="click->alert#showAlert">
+                        <%= link_to certify_path(experience),   data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} do %>
+                          <button type="button" class="btn btn-primary" id="liveAlertBtn">Certify XP</button>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
