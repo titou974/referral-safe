@@ -15,7 +15,7 @@ class ExperiencesController < ApplicationController
   def update
     @experience = Experience.find(params[:id])
     if @experience.update(experience_params)
-      redirect_to user_path, notice: "experience updated"
+      redirect_to user_path(@experience.user), notice: "experience updated"
     else
       render :dashboard, status: :unprocessable_entity
     end
