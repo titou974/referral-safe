@@ -28,7 +28,7 @@
                   <ul class="skills-list">
                     <% user.experiences.each { |experience| @skills = experience.skills } %>
                     <% @skills.each do |skill| %>
-                      <li class="skill-pill"><%= "##{skill}" %></li>
+                      <li class="skill-pill"><%= truncate("##{skill}", length: 20) %></li>
                     <% end %>
                   </ul>
                 </div>

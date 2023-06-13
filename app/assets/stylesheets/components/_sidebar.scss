@@ -49,12 +49,17 @@ ul {
 
 			.pct {
 				position: absolute;
-				top: -40px;
-				right: 0;
+				top: -29px;
+				right: -89px;
 				opacity: 0;
 				transition: opacity 0.3s linear;
         font-size: 18px;
 			}
 		}
 	}
+}
+
+.skill_name {
+  font-weight: 400;
+  font-size: 0.65em;
 }

@@ -21,11 +21,21 @@
 
 
 .title-dashboard {
-  font-size: 1.4em;
+  font-size: 1em;
   font-weight: 500;
   line-height: 1.5em;
 }
 
 .title-dashboard > span {
+  color: #5877FA;
+}
+
+.title-xp {
+  font-size: 1.4em;
+  font-weight: 600;
+  line-height: 1.5em;
+}
+
+.title-xp > span {
   color: #5877FA;
 }
