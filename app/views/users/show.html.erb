@@ -84,48 +84,37 @@
       </div>
       <div class="row my-3">
         <% @user.experiences.each do |experience| %>
-          <div class="col-4 rounded-4 <%= experience.certified? ? 'experiences' : 'experiences-none' %>  m-2 py-2 px-3">
-            <% if experience.certified? == false && current_user.role.present? %>
-              <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                <lord-icon
-                    src="https://cdn.lordicon.com/vacmyjrh.json"
-                    trigger="hover"
-                    colors="primary:#ff8b07"
-                    style="width:30px;height:30px", class="absolute-alert">
-                </lord-icon>
-            <% else %>
-              <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                <lord-icon
-                    src="https://cdn.lordicon.com/yqzmiobz.json"
-                    trigger="hover"
-                    colors="primary:#5877fa"
-                    style="width:30px;height:30px", class="absolute-alert">
-                </lord-icon>
-            <% end %>
-            <h3><%= experience.job_name %></h3>
-            <div class="d-flex align-items-center company-experiences mt-2 mb-1">
-              <h5 class="mb-0"><%= experience.company.name %></h5>
-              <%= cl_image_tag experience.company.photo.key, height: 30, width: 30, crop: :fill, class: "ms-2 avatar-company" %>
+          <div class="card-user-experience col-4">
+            <div class=" radiusgeneral <%= experience.certified? ? 'experiences' : 'experiences-none' %> m-2 py-2 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
+              <% if experience.certified? == false && current_user.role.present? %>
+                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                  <lord-icon
+                      src="https://cdn.lordicon.com/vacmyjrh.json"
+                      trigger="hover"
+                      colors="primary:#ff8b07"
+                      style="width:30px;height:30px", class="absolute-alert">
+                  </lord-icon>
+              <% else %>
+                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                  <lord-icon
+                      src="https://cdn.lordicon.com/yqzmiobz.json"
+                      trigger="hover"
+                      colors="primary:#5877fa"
+                      style="width:30px;height:30px", class="absolute-alert">
+                  </lord-icon>
+              <% end %>
+              <h3><%= experience.job_name %></h3>
+              <div class="d-flex align-items-center company-experiences mt-2 mb-1">
+                <h5 class="mb-0"><%= experience.company.name %></h5>
+                <%= cl_image_tag experience.company.photo.key, height: 30, width: 30, crop: :fill, class: "ms-2 avatar-company" %>
+              </div>
+              <p class="date-experience">
+                <%= "#{experience.start_date} - #{experience.end_date}" %>
+              </p>
+              <p class="experience-description mt-2 mb-2">
+                <%= truncate(experience.job_description, length: 90) %>
+              </p>
             </div>
-            <p class="date-experience">
-              <%= "#{experience.start_date} - #{experience.end_date}" %>
-            </p>
-            <p class="experience-description mt-2 mb-2">
-              <%= truncate(experience.job_description, length: 90) %>
-            </p>
-            <% if experience.certified? %>
-              <div class="see-more d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
-                <p class="me-1">See More</p><i class="fa-solid fa-chevron-left ms-1"></i>
-              </div>
-            <% elsif experience.certified? == false && current_user.role.present? %>
-              <div class="see-more-validate d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
-                <p class="me-1">Certify XP</p><i class="fa-solid fa-chevron-left ms-1"></i>
-              </div>
-            <% else %>
-              <div class="see-more d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
-                <p class="me-1">See More</p><i class="fa-solid fa-chevron-left ms-1"></i>
-              </div>
-            <% end %>
           </div>
           <div class="modal fade" id="exampleModal-<%= experience.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
