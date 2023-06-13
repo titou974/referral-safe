@@ -27,11 +27,13 @@
   position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
+  border-radius: 0.2rem;
 }
 
 .experiences-none:hover {
   transform: scale(1.02);
   box-shadow: 7px 7px 0 1px rgb(255, 139, 7);
+  cursor: pointer
 }
 
 .absolute-alert {
@@ -45,7 +47,7 @@
 }
 
 .company-experiences > h5 {
-  font-size: 0.6em;
+  font-size: 0.7em;
   font-weight: 500;
   font-style: italic;
 }
@@ -56,15 +58,15 @@
 }
 
 .date-experience {
-  font-size: 0.5em;
+  font-size: 0.6em;
   font-style: italic;
   font-weight: 100;
 }
 
 .experience-description {
-  font-size: 0.5em;
+  font-size: 0.6em;
   color: rgb(0, 0, 0);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .see-more {
@@ -104,6 +106,7 @@
 .experiences-adding:hover {
   transform: scale(1.02);
   box-shadow: 7px 7px 0 1px rgba(88, 119, 250, 1);
+  cursor: pointer
 }
 
 .experiences-adding > p {
