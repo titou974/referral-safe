@@ -4,5 +4,6 @@ class Experience < ApplicationRecord
 
   validates :job_name, presence: true
   validates :job_description, presence: true
-  validates :skills, presence: true
+
+  acts_as_taggable_on :skills
 end

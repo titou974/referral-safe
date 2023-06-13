@@ -33,9 +33,12 @@ class ExperiencesController < ApplicationController
   def destroy
   end
 
+
+  private
+
   def experience_params
     #ajouter la photo du logo de l'entreprise dans les permits quand ce sera done sur la seed.
-    params.require(:experience).permit(:job_name, :job_description, :start_date, :end_date, :skills, :company_id)
+    params.require(:experience).permit(:job_name, :job_description, :start_date, :end_date, :skills, :company_id, :skill_list)
   end
 
 end
