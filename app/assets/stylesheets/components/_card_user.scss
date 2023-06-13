@@ -1,19 +1,20 @@
 .card-user {
   border-color: lightgrey;
   padding: 1em;
+  position: relative;
 }
 
 .card-user__image {
-  background-color: white;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 0.2rem;
   border-style: solid 2px;
   transition: transform 0.3s, box-shadow 0.3s;
-  img {
+  .img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
+    aspect-ratio: 1/1;
   }
 
 }
@@ -27,10 +28,12 @@
 .card-user__infos {
   justify-content: space-between;
   display: flex;
+  padding: 0.5em;
 }
 
 .card-user-skills {
   text-align: center;
+  padding: 0.5em;
 }
 
 .skills-list {
