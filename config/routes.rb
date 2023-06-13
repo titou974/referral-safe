@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   end
 
   resources :companies, only: [:update, :destroy]
-
+  
   resources :experiences, only: [:update] do
     member do
       patch :certify
     end
   end
 
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: [:create, :show] do
     resources :messages, only: :create
   end
 

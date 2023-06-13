@@ -14,6 +14,7 @@ require 'nokogiri'
 Experience.delete_all
 Role.delete_all
 Company.delete_all
+Chatroom.delete_all
 User.delete_all
 
 url = 'https://unsplash.com/fr/s/photos/people-suit'
@@ -382,13 +383,21 @@ puts "user test recruiter without company created"
 
 user_3 = User.create(
   email: "ceo@safe.test",
-  first_name: "Elon",
-  last_name: "Musk",
+  first_name: "Lone",
+  last_name: "Kusm",
   password: "123456",
   address: "5 rue Montmartre"
 )
-
 puts "CEO test created"
+
+user_4 = User.create(
+  email: "people@safe.test",
+  first_name: "Onel",
+  last_name: "Smuk",
+  password: "123456",
+  address: "5 rue Montmartre"
+)
+puts "People test created"
 
 company = Company.new(
   name: "ACME Corporation",
@@ -398,10 +407,22 @@ company = Company.new(
 )
 puts "company test created"
 
-chatroom = Chatroom.create(
-  name: "#{user_1.first_name}")
+chatroom_1 = Chatroom.create!(
+  name: "#{user_2.first_name}",
+  user_a_id: user_1.id,
+  user_b_id: user_2.id
+)
 
-chatroom = Chatroom.create(
-  name: "#{user_2.first_name}")
+chatroom_2 = Chatroom.create!(
+  name: "#{user_3.first_name}",
+  user_a_id: user_1.id,
+  user_b_id: user_3.id
+)
+
+chatroom_3 = Chatroom.create!(
+  name: "#{user_4.first_name}",
+  user_a_id: user_1.id,
+  user_b_id: user_4.id
+)
 
 puts "chatroom test created"
