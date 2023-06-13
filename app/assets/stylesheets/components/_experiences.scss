@@ -1,6 +1,5 @@
 .experiences {
   height: 8em;
-  width: 30%;
   background-color: #ffffff;
   font-size: 1em;
   font-weight: 100;
@@ -9,17 +8,17 @@
   border: 2px solid #5877FA;
   transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
+  border-radius: 0.2rem;
 }
 
 .experiences:hover {
   transform: scale(1.02);
-  box-shadow: 7px 7px 0 1px rgb(88, 119, 250)
+  box-shadow: 7px 7px 0 1px rgb(88, 119, 250);
 }
 
 .experiences-none {
   border: 2px solid #ff8b07;
   height: 8em;
-  width: 30%;
   background-color: #ffffff;
   font-size: 1em;
   font-weight: 100;
@@ -31,7 +30,7 @@
 
 .experiences-none:hover {
   transform: scale(1.02);
-  box-shadow: 7px 7px 0 1px rgb(255, 139, 7)
+  box-shadow: 7px 7px 0 1px rgb(255, 139, 7);
 }
 
 .absolute-alert {
@@ -71,31 +70,32 @@
   font-size: 0.8em;
   font-weight: 600;
   transition: transform 0.3s;
-  width: 70%;
+  text-align: center;
   color: #5877FA;
 }
 
-.see-more:hover {
-  transform: scale(1.05);
-  color: rgb(73, 73, 73)
-}
+// .see-more:hover {
+//   transform: scale(1.05);
+//   color: rgb(73, 73, 73);
+// }
 
 .see-more-validate {
   font-size: 0.8em;
   font-weight: 600;
   transition: transform 0.3s;
-  width: 70%;
+  text-align: center;
   color: #ff8b07;
 }
 
-.see-more-validate:hover {
-  transform: scale(1.05);
-  color: rgb(73, 73, 73);
-}
+// .see-more-validate:hover {
+//   transform: scale(1.05);
+//   color: rgb(73, 73, 73);
+// }
 
 .experiences-adding {
   background-color: white;
   border: 2px solid #5877FA;
+  border-radius: 0.2rem;
   height: 8em;
   width: 30%;
   transition: transform 0.3s, box-shadow 0.3s;

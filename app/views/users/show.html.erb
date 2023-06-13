@@ -1,3 +1,6 @@
+<div data-controller="progress-bar" ></div>
+
+
 <div class="container">
   <div class="row">
     <div class="col-3">
@@ -17,6 +20,41 @@
           <% end %>
         <% end %>
       </div>
+
+      <ul id="skills">
+        <li class="letter">
+          HTML
+          <div class="bar-container">
+            <span class="bar" data-bar='{ "color": "#19f" }'>
+              <span class="pct">82%</span>
+            </span>
+          </div>
+        </li>
+        <li class="letter">
+          CSS
+          <div class="bar-container">
+            <span class="bar" data-bar='{ "color": "#27ae60", "delay": 600 }'>
+              <span class="pct">100%</span>
+            </span>
+          </div>
+        </li>
+        <li class="letter">
+          PHP
+          <div class="bar-container">
+            <span class="bar" data-bar='{ "color": "#9b59b6", "delay": 1200 }'>
+              <span class="pct">60%</span>
+            </span>
+          </div>
+        </li>
+        <li class="letter">
+          SQL
+          <div class="bar-container">
+            <span class="bar" data-bar='{ "color": "#ae8a33", "delay": 1800 }'>
+              <span class="pct">80%</span>
+            </span>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="col-9">
       <div class="profil bg-white my-3 py-4">
@@ -88,72 +126,68 @@
       </div>
       <div class="row my-3">
         <% @user.experiences.each do |experience| %>
-          <div class="col-4 rounded-4 <%= experience.certified? ? 'experiences' : 'experiences-none' %>  m-2 py-2 px-3">
-            <% if experience.certified? == false && current_user.role.present? %>
-              <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                <lord-icon
-                    src="https://cdn.lordicon.com/vacmyjrh.json"
-                    trigger="hover"
-                    colors="primary:#ff8b07"
-                    style="width:30px;height:30px", class="absolute-alert">
-                </lord-icon>
-            <% else %>
-              <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                <lord-icon
-                    src="https://cdn.lordicon.com/yqzmiobz.json"
-                    trigger="hover"
-                    colors="primary:#5877fa"
-                    style="width:30px;height:30px", class="absolute-alert">
-                </lord-icon>
-            <% end %>
-            <h3><%= experience.job_name %></h3>
-            <div class="d-flex align-items-center company-experiences mt-2 mb-1">
-              <h5 class="mb-0"><%= experience.company.name %></h5>
-              <%= cl_image_tag experience.company.photo.key, height: 30, width: 30, crop: :fill, class: "ms-2 avatar-company" %>
+          <div class="card-user-experience col-4">
+            <div class=" radiusgeneral <%= experience.certified? ? 'experiences' : 'experiences-none' %> m-2 py-2 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
+              <% if experience.certified? == false && current_user.role.present? %>
+                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                  <lord-icon
+                      src="https://cdn.lordicon.com/vacmyjrh.json"
+                      trigger="hover"
+                      colors="primary:#ff8b07"
+                      style="width:30px;height:30px", class="absolute-alert">
+                  </lord-icon>
+              <% else %>
+                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                  <lord-icon
+                      src="https://cdn.lordicon.com/yqzmiobz.json"
+                      trigger="hover"
+                      colors="primary:#5877fa"
+                      style="width:30px;height:30px", class="absolute-alert">
+                  </lord-icon>
+              <% end %>
+              <h3><%= experience.job_name %></h3>
+              <div class="d-flex align-items-center company-experiences mt-2 mb-1">
+                <h5 class="mb-0"><%= experience.company.name %></h5>
+                <%= cl_image_tag experience.company.photo.key, height: 30, width: 30, crop: :fill, class: "ms-2 avatar-company" %>
+              </div>
+              <p class="date-experience">
+                <%= "#{experience.start_date} - #{experience.end_date}" %>
+              </p>
+              <p class="experience-description mt-2 mb-2">
+                <%= truncate(experience.job_description, length: 90) %>
+              </p>
             </div>
-            <p class="date-experience">
-              <%= "#{experience.start_date} - #{experience.end_date}" %>
-            </p>
-            <p class="experience-description mt-2 mb-2">
-              <%= truncate(experience.job_description, length: 90) %>
-            </p>
-            <% if experience.certified? %>
-              <div class="see-more d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
-                <p class="me-1">See More</p><i class="fa-solid fa-chevron-left ms-1"></i>
-              </div>
-            <% elsif experience.certified? == false && current_user.role.present? %>
-              <div class="see-more-validate d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
-                <p class="me-1">Certify XP</p><i class="fa-solid fa-chevron-left ms-1"></i>
-              </div>
-            <% else %>
-              <div class="see-more d-flex align-items-center mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
-                <p class="me-1">See More</p><i class="fa-solid fa-chevron-left ms-1"></i>
-              </div>
-            <% end %>
-            <div class="modal fade" id="exampleModal-<%= experience.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <div class="text-end">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                      <p class= "company-name"><%= experience.company.name %></p>
-                      <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-dark ms-3" %>
-                    </div>
-                    <p class="experience-date mb-4"><%= "#{experience.start_date} - #{experience.end_date}" %></p>
-                    <p class="text-modal fw-bolder"><%= experience.job_name %></p>
-                    <p class="text-modal"> <%= experience.job_description  %></p>
-                    <% if experience.certified? == false && current_user.role.present? %>
-                      <div class="d-flex justify-content-center mt-5">
-                        <div data-controller="alert" data-action="click->alert#showAlert">
-                          <%= link_to certify_path(experience),   data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} do %>
-                            <button type="button" class="btn btn-primary" id="liveAlertBtn">Certify XP</button>
-                          <% end %>
-                        </div>
-                      </div>
-                    <% end %>
+          </div>
+          <div class="modal fade" id="exampleModal-<%= experience.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body" data-controller="edit-resource">
+                  <div class="text-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
+                  <div class="d-flex align-items-center mb-2">
+                    <p class= "company-name"><%= experience.company.name %></p>
+                    <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-dark ms-3" %>
+                  </div>
+                  <p class="experience-date mb-4"><%= "#{experience.start_date} - #{experience.end_date}" %></p>
+                  <p class="text-modal fw-bolder"><%= experience.job_name %></p>
+                  <div data-edit-resource-target="infos">
+                    <i class="fas fa-pen fa-xs ml-2" data-action="click->edit-resource#displayForm"></i>
+                    <p class="text-modal"> <%= experience.job_description  %></p>
+                  </div>
+                  <% if experience.certified? == false && current_user.role.present? %>
+                    <div class="d-flex justify-content-center mt-5">
+                      <div data-controller="alert" data-action="click->alert#showAlert">
+                        <%= link_to certify_experience_path(experience),   data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} do %>
+                          <button type="button" class="btn btn-primary" id="liveAlertBtn">Certify XP</button>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                  <%= simple_form_for experience, html: {class: 'd-none', 'data-edit-resource-target': 'form'} do |f|%>
+                     <%= f.input :job_description, label: "Job Description", as: :text %>
+                     <%= f.button :submit, class: "btn btn-primary" %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -172,8 +206,8 @@
                     <%= f.association :company %>
                     <%= f.input :job_name, label: "Job Name" %>
                     <%= f.input :job_description, label: "Job Description" %>
-                    <%= f.input :start_date, as: :date, label: "Start Date" %>
-                    <%= f.input :end_date, as: :date, label: "End Date" %>
+                    <%= f.input :start_date, as: :string, label: "Dates", input_html: { data: { controller: "datepicker" } } %>
+                    <%= f.input :end_date, as: :string, label: "End Date", wrapper_html: { class: 'd-none' } %>
                     <%= f.input :skills, label: "Skills" %>
                     <%= f.button :submit, class: "btn btn-primary" %>
                   <% end %>
@@ -207,8 +241,14 @@
             <h4 class="my-3">ChatRoom</h4>
             <div class="d-flex justify-content-center align-items-center">
               <div class="col-4 text-center d-flex flex-column justify-content-center align-items-center chatroom m-2">
-                <i class="fa-regular fa-comments fa-2xl" style="color: #5877FA;"></i>
-                <p class="my-3">Start a new conversation</p>
+                <% if @chatroom.nil? %>
+                  <%= link_to chatrooms_path(id: params[:id]), data: { "turbo-method": :post } do %>
+                    <i class="fa-regular fa-comments fa-2xl" style="color: #5877FA;"></i>
+                    <p class="my-3">Start a new conversation</p>
+                  <% end %>
+                <% else %>
+                  <%= render "chatrooms/chatroom", chatroom: @chatroom, message: Message.new %>
+                <% end %>
               </div>
             </div>
           </div>
