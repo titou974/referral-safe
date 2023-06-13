@@ -18,4 +18,8 @@ class User < ApplicationRecord
     tsearch: { prefix: true }
   }
 
+  def chatroom_with(another_user)
+    Chatroom.where(user_a: self, user_b: another_user).or(Chatroom.where(user_b: self, user_a: another_user)).first
+  end
+
 end
