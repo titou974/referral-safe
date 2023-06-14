@@ -1,7 +1,14 @@
 <%= simple_form_for @user, html: {class: "d-none", data: {edit_dashboard_target: "form", action: 'submit->edit_dashboard#update'}} do |f| %>
   <div class="d-flex flex-column align-items-center">
     <%= f.input :photo, as: :file, label: false, input_html: { class: 'form-user '} %>
-    <%= f.input :available, input_html: { class: "" } %>
+    <div class="d-flex align-items-center">
+      <%= f.input :available, input_html: { class: "custom-checkbox-input" } %>
+      <div class="custom-checkbox mb-3">
+        <input class="custom-checkbox-input" type="checkbox" id="custom-checkbox-discovery"/>
+        <label class="custom-checkbox-label" for="custom-checkbox-discovery">
+        <label class="custom-checkbox-label-aux" for="custom-checkbox-discovery"></label>
+      </div>
+    </div>
     <%= f.input :first_name, label: false, input_html: { class: 'form-user '}%>
     <%= f.input :last_name, label: false, input_html: { class: 'form-user '} %>
   </div>
