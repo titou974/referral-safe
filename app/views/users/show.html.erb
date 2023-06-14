@@ -235,10 +235,9 @@
         </div>
       </div>
       <div class="row justify-content-between">
-          <div class="col-6 bg-white rounded-4" style='width:48%!important'>
-            <h4 class="my-3">ChatRoom</h4>
+          <div class="col-12 bg-white rounded-4">
             <div class="d-flex justify-content-center align-items-center">
-              <div class="col-4 text-center d-flex flex-column justify-content-center align-items-center chatroom m-2">
+              <div class="chatroom m-2">
                 <% if @chatroom.nil? %>
                   <%= link_to chatrooms_path(id: params[:id]), data: { "turbo-method": :post } do %>
                     <i class="fa-regular fa-comments fa-2xl" style="color: #5877FA;"></i>
