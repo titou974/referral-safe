@@ -54,7 +54,7 @@
                       <%= cl_image_tag user.companies.last.photo.key, height: 50, width: 50, crop: :fill, class: "ms-3" %>
                     </div>
                     <p class="experience-date mb-4"><%= "#{user.experiences.last.start_date} - #{user.experiences.last.end_date}" %></p>
-                    <p class="text-modal fw-bolder"><%= user.experiences.last.job_name %></p>
+                    <p class="text-modal-fw-bolder"><%= user.experiences.last.job_name %></p>
                     <p class="text-modal"> <%= truncate(user.experiences.last.job_description, length: 150) %></p>
                   <% end %>
                   <% if current_user.role.present? %>
