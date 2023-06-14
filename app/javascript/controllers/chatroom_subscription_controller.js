@@ -13,6 +13,10 @@ export default class extends Controller {
     )
   }
 
+  resetForm(event) {
+    event.target.reset()
+  }
+
   #insertMessageAndScrollDown(data) {
     // Logic to know if the sender is the current_user
     const currentUserIsSender = this.currentUserIdValue === data.sender_id
