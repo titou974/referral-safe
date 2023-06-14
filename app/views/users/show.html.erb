@@ -160,7 +160,7 @@
                   <p class="text-modal fw-bolder"><%= experience.job_name %></p>
                   <div data-edit-resource-target="infos">
                     <% if current_user.role.present? && experience.certified == false %>
-                      <i class="fas fa-pen fa-xs ml-2" data-action="click->edit-resource#displayForm"></i>
+                      <i class="fas fa-pen fa-xs ml-2 background-pen" data-action="click->edit-resource#displayForm"></i>
                     <% end %>
                     <p class="text-modal"> <%= experience.job_description  %></p>
                   </div>
@@ -175,7 +175,7 @@
                   <% end %>
                   <% if current_user.role.present? && experience.certified == false %>
                     <%= simple_form_for experience, html: {class: 'd-none', 'data-edit-resource-target': 'form'} do |f|%>
-                      <%= f.input :job_description, label: "Job Description", as: :text %>
+                      <%= f.input :comment, label: "Comment on Experience", as: :text %>
                       <%= f.button :submit, class: "btn btn-primary" %>
                     <% end %>
                   <% end %>

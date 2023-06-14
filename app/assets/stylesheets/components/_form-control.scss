@@ -63,7 +63,7 @@
 }
 
 input[type="submit" i] {
-  border-radius: 10px;
+  border-radius: 0.2rem;
   appearance: none;
   user-select: none;
   white-space: none;
@@ -102,4 +102,67 @@ input[type="submit" i]:active {
 .search {
   border-radius: 5px;
   width: 4em;
+}
+
+
+.ts-wrapper {
+  margin-left: 16px;
+}
+
+.ts-control {
+  border: 1px solid #5877FA;
+  border-radius: 0.6em;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  box-shadow: none;
+  border-radius: 3px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ts-control:placeholder {
+  color: #b4b4b4;
+  background-color: #5877FA
+}
+
+.item {
+  background-color: #5877FA;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 0.2em;
+  font-size: 0.5em;
+  text-align: center;
+  font-weight: 600;
+}
+
+.ts-wrapper.multi .ts-control > div {
+  cursor: pointer;
+  background-color: #5877FA;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 0.2em;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 600;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-active {
+  box-shadow: 5px 5px 0 1px rgba(88, 119, 250, 1);
+}
+
+.form-title-company {
+  font-size: 1em;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.width-70 {
+  width: 70%;
 }

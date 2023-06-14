@@ -3,9 +3,9 @@
     <div class="container-index">
       <div class="d-flex flex-column justify-content-center align-items-center mb-5 py-5">
         <h1 class="title-index my-5 text-center pb-3"><span>Recruit</span> Certified <br>Candidates</h1>
-        <%= form_with url: users_path, method: :get, class: "d-flex" do %>
+        <%= form_with url: users_path, method: :get, class: "d-flex align-items-center" do %>
           <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Elon Musk" %>
-          <%= select_tag :choices, options_for_select(@skills, ""), multiple: true, id: "#input-tags", data: {controller: "autocomplete"} %>
+          <%= select_tag :choices, options_for_select(@skills, ""), multiple: true, id: "#input-tags", data: {controller: "autocomplete"}, placeholder: "#Marketing" %>
           <%= button_tag type: "submit", class: "btn btn-primary mx-3 search" do %>
             <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
@@ -69,30 +69,32 @@
                         <%= "#{user.first_name} #{user.last_name}'s Resume" %> <i class="fa-solid fa-right-to-bracket pe-1"></i>
                       </button>
                       <%= form_with(model: user, local: true, html: { class: "d-none" },  data: { display_modal_form_target: "form" }) do |form| %>
-                        <p>Is your company registered ?</p>
-                        <label>
+                        <p class="form-title-company mt-4 mb-3">Is your company registered ?</p>
+                        <label class="mx-3 answer">
                           <%= form.radio_button :toggle_attribute, "yes", data: { action: "click->display-modal-form#displayForm2",  toggleGroup: "registration" } %>
                           Yes
                         </label>
-                        <label>
+                        <label class="mx-3">
                           <%= form.radio_button :toggle_attribute, "no", data: { action: "click->display-modal-form#displayForm2", toggleGroup: "registration" } %>
                           No
                         </label>
                       <% end %>
                       <%= simple_form_for [user, @role], html: {
-                        class: "d-none",
+                        class: "d-none d-flex flex-column justify-content-center",
                         data: {
                           display_modal_form_target: "formrecruiter"
                         }
                       } do |f| %>
                         <%= f.label :company do %>
-                          Select your company
+                          <p class="form-title-company mt-4 mb-3">Select your company<p>
                         <% end %>
-                        <%= f.association :company, label: false, input_html: { data: { controller: "autocomplete" } } %>
-                        <%= f.label :recruiter do %>
-                          Are you recruiter of your company ?
-                        <% end %>
-                        <%= f.input :recruiter, label: "Yes" %>
+                        <%= f.association :company, label: false, wrapper: :ts_select, input_class: "", input_html: { class: "", data: { controller: "autocomplete" } } %>
+                        <div class="d-flex justify-content-center align-items-center my-4">
+                          <%= f.label :recruiter do %>
+                            <p class="form-title-company me-3">Are you recruiter ?</p>
+                          <% end %>
+                          <%= f.input :recruiter, label: false %>
+                        </div>
                         <%= f.button :submit, class: "btn btn-primary" %>
                       <% end %>
 
