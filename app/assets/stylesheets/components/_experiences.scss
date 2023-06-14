@@ -18,7 +18,7 @@
 }
 
 .experiences-none {
-  border: 2px solid #ff8b07;
+  border: 2px solid #F2BE22;
   height: 8em;
   background-color: #ffffff;
   font-size: 1em;
@@ -28,6 +28,7 @@
   transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
   border-radius: 0.2rem;
+  filter: brightness(70%);
 }
 
 .experiences-none:hover {

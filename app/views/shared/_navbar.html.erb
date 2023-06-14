@@ -30,6 +30,8 @@
                 <a class="fa-regular fa-comment fa-lg me-5" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <% if false %>
+
                   <% if current_user.chatrooms.present? %>
                     <% current_user.chatrooms.each do |chatroom| %>
                       <% other_user = (chatroom.user_a == current_user ? chatroom.user_b : chatroom.user_a) %>
@@ -38,6 +40,7 @@
                         <p> <%= cl_image_tag(other_user.photo.key, height: 40, width: 40, crop: :fill, class: "rounded-circle") %></p>
                       <% end %>
                     <% end %>
+                  <% end %>
                   <% end %>
                 </ul>
               </div>
