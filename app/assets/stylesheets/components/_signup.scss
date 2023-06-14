@@ -35,6 +35,15 @@ abbr {
   font-weight: bold;
 }
 
+.btn:not([disabled]):not(.disabled).active,
+.btn:not([disabled]):not(.disabled):active,
+.btn:not([disabled]):not(.disabled).hover,
+.btn:not([disabled]):not(.disabled):hover{
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: white !important;
+}
+
 .links_login a {
   text-decoration: none;
 }
