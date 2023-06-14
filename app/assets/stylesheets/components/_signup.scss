@@ -30,19 +30,34 @@ abbr {
 }
 
 .form-actions_signup .btn {
-  color: #fff;
   font-size: 20px;
   font-weight: bold;
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #5877FA;
+  --bs-btn-border-color: #5877FA;
+  --bs-btn-hover-color: #5877FA;
+  --bs-btn-hover-bg: #fff;
+  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #5877FA;
+  --bs-btn-active-bg: #fff;
+  --bs-btn-active-border-color: #0a58ca;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(35, 220, 61, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0D6EFD;
+  --bs-btn-disabled-border-color: #0D6EFD;
+    border-radius: 10px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.btn:not([disabled]):not(.disabled).active,
-.btn:not([disabled]):not(.disabled):active,
-.btn:not([disabled]):not(.disabled).hover,
-.btn:not([disabled]):not(.disabled):hover{
-    color: #fff !important;
-    background-color: #007bff !important;
-    border-color: white !important;
-}
+// .btn:not([disabled]):not(.disabled).active,
+// .btn:not([disabled]):not(.disabled):active,
+// .btn:not([disabled]):not(.disabled).hover,
+// .btn:not([disabled]):not(.disabled):hover{
+//   color: white !important;
+//   background-color: #5877FA !important;
+//   border-color: #5877FA !important;
+// }
 
 .links_login a {
   text-decoration: none;
