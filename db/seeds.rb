@@ -354,14 +354,22 @@ end
 
 puts "#{Role.all.count} roles created"
 
-user_1 = User.create(
+user_1 = User.new(
   email: "candidate@safe.test",
   first_name: "Laura",
   last_name: "Lotran",
   password: "123456",
   address: "1 ter rue des mauvais garçons"
 )
+user_1.experiences = Experience.all.sample(6)
+
 puts "user test candidate created"
+
+file = URI.open("https://images.unsplash.com/photo-1685037042785-4767a32f00a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80")
+user_1.photo.attach(io: file, filename: "user#2.png", content_type: "image/png")
+
+user_1.save!
+
 
 user_2 = User.create(
   email: "recruiter@safe.test",
@@ -371,7 +379,7 @@ user_2 = User.create(
   address: "30 rue du temple",
   available: true
 )
-file = URI.open("https://images.unsplash.com/photo-1658756321927-ed2da549bab3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80")
+file = URI.open("https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80")
 user_2.photo.attach(io: file, filename: "user#2.png", content_type: "image/png")
 
 role = Role.new(recruiter: true, admin: false)
