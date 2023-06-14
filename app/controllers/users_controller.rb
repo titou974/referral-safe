@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @experience = Experience.new
     @experience.user = @user
-    @chatroom = @user.chatroom_with(current_user)
+#    @chatroom = @user.chatroom_with(current_user)
   end
 
   private
