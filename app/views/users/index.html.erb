@@ -5,7 +5,7 @@
         <h1 class="title-index my-5 text-center pb-3"><span>Recruit</span> Certified <br>Candidates</h1>
         <%= form_with url: users_path, method: :get, class: "d-flex" do %>
           <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Elon Musk" %>
-          <%= select_tag :choices, options_for_select(@skills, ""), multiple: true, data: {controller: "autocomplete"} %>
+          <%= select_tag :choices, options_for_select(@skills, ""), multiple: true, id: "#input-tags", data: {controller: "autocomplete"} %>
           <%= button_tag type: "submit", class: "btn btn-primary mx-3 search" do %>
             <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
@@ -28,7 +28,7 @@
                   <ul class="skills-list">
                     <% user.experiences.each { |experience| @skills = experience.skills } %>
                     <% @skills.each do |skill| %>
-                      <li class="skill-pill"><%= "##{skill}" %></li>
+                      <li class="skill-pill"><%= truncate("##{skill}", length: 20) %></li>
                     <% end %>
                   </ul>
                 </div>
@@ -88,7 +88,7 @@
                         <%= f.label :company do %>
                           Select your company
                         <% end %>
-                        <%= f.association :company, label: false %>
+                        <%= f.association :company, label: false, input_html: { data: { controller: "autocomplete" } } %>
                         <%= f.label :recruiter do %>
                           Are you recruiter of your company ?
                         <% end %>

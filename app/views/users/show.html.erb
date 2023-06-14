@@ -4,66 +4,13 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <div class="skill_barre my-3">
-        <% if @user.experiences.present? %>
-          <% skills = [] %>
-          <% @user.experiences.each do |experience| %>
-            <% experience.skills.each do |skill| %>
-              <% unless skills.include?(skill) %>
-                <% skills << skill %>
-                <span class="letter"><%= skill %></span>
-                <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress-bar progress-bar-striped progress-bar-animated w-70" style="width: 90%">90%</div>
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <ul id="skills">
-        <li class="letter">
-          HTML
-          <div class="bar-container">
-            <span class="bar" data-bar='{ "color": "#19f" }'>
-              <span class="pct">82%</span>
-            </span>
-          </div>
-        </li>
-        <li class="letter">
-          CSS
-          <div class="bar-container">
-            <span class="bar" data-bar='{ "color": "#27ae60", "delay": 600 }'>
-              <span class="pct">100%</span>
-            </span>
-          </div>
-        </li>
-        <li class="letter">
-          PHP
-          <div class="bar-container">
-            <span class="bar" data-bar='{ "color": "#9b59b6", "delay": 1200 }'>
-              <span class="pct">60%</span>
-            </span>
-          </div>
-        </li>
-        <li class="letter">
-          SQL
-          <div class="bar-container">
-            <span class="bar" data-bar='{ "color": "#ae8a33", "delay": 1800 }'>
-              <span class="pct">80%</span>
-            </span>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-9">
-      <div class="profil bg-white my-3 py-4">
-        <h1 class="title-dashboard text-center mb-3">
-          Welcome on <% if current_user == @user%>your Dashboard, <span><%= @user.first_name %></span><% else %> the <span><%= @user.first_name %>'s</span> Dashboard<% end %>
+      <div class="profil bg-white mb-3 mt-4">
+        <h1 class="title-dashboard mb-3">
+          <% if current_user == @user%>Welcome on your Dashboard, <span><%= @user.first_name %></span><% else %> The <span><%= @user.first_name %>'s</span> Dashboard<% end %>
         </h1>
         <% if current_user == @user  %>
           <div data-controller="edit-dashboard" data-edit-dashboard-target="profilinfos">
-            <div class="profilinfos d-flex justify-content-center align-items-center mt-3" data-edit-dashboard-target="infos">
+            <div class="profilinfos d-flex justify-content-center align-items-center mt-4" data-edit-dashboard-target="infos">
               <div class="photo-container pe-3">
                 <% if @user.photo.attached? %>
                   <div class="background-photo my-3">
@@ -77,13 +24,22 @@
               </div>
               <div class="name-status-container ps-3 mb-5">
                 <% if @user.available.present? %>
-                  <%= @user.available? ? "Available" : "Unavailable" %>
+                  <p class="available-status d-flex justify-content-center align-items-center">
+                    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                    <lord-icon
+                        src="https://cdn.lordicon.com/oezixobx.json"
+                        trigger="hover"
+                        colors="primary:#ffffff"
+                        style="width:20px;height:20px; margin-right: 7px">
+                    </lord-icon>
+                    <%= @user.available? ? "Available" : "Unavailable" %>
+                  </p>
                 <% end %>
                 <div class="d-flex align-items-center">
-                  <p class="pe-1 profil-name"><%=  @user.first_name.present? ? @user.first_name : "First name"%></p>
-                  <p class="ps-1 profil-name"><%=  @user.last_name.present? ? @user.last_name : "Last name"%></p>
+                  <p class="pe-1 profil-name"><%=  @user.first_name.present? ? @user.first_name : "Name"%></p>
+                  <p class="ps-1 profil-name"><%=  @user.last_name.present? ? @user.last_name : ""%></p>
                   <div class="background-pen ms-3" data-action="click->edit-dashboard#displayFormDashboard">
-                    <i class="fa-solid fa-pen pen"></i>
+                    <i class="fa-solid fa-pen pen fa-xs"></i>
                   </div>
                 </div>
                 <% if @user.experiences.present? %>
@@ -94,41 +50,72 @@
             <%= render partial: 'shared/user_form', locals: { resource: @user } %>
           </div>
         <% else %>
-          <div class="profilinfos d-flex justify-content-center align-items-center mt-3">
-              <div class="photo-container pe-3">
-                <% if @user.photo.attached? %>
-                  <div class="background-photo my-3">
-                    <%= cl_image_tag(@user.photo.key, height: 100, width: 100, crop: :fill, class: "rounded-circle") %>
-                  </div>
-                <% else %>
-                  <div class="avatar-empty my-3">
-                  </div>
-                <% end %>
-              </div>
-              <div class="name-status-container ps-3 mb-5">
-                <% if @user.available.present? %>
-                  <%= @user.available? ? "Available" : "Unavailable" %>
-                <% end %>
-                <div class="d-flex align-items-center">
-                  <p class="pe-1 profil-name"><%=  @user.first_name.present? ? @user.first_name : "First name"%></p>
-                  <p class="ps-1 profil-name"><%=  @user.last_name.present? ? @user.last_name : "Last name"%></p>
+          <div class="profilinfos d-flex justify-content-center align-items-center mt-4">
+            <div class="photo-container pe-3">
+              <% if @user.photo.attached? %>
+                <div class="background-photo my-3">
+                  <%= cl_image_tag(@user.photo.key, height: 100, width: 100, crop: :fill, class: "rounded-circle") %>
                 </div>
-                <% if @user.experiences.present? %>
-                  <p class="profil-job"><%= @user.experiences.last.job_name %></p>
-                <% end %>
-              </div>
-              <div data-controller="clipboard" data-clipboard-feedback-text-value="Copied!">
-                <button class="btn btn-primary" data-action="click->clipboard#copy">Copy to Clipboard</button>
-                <input data-clipboard-target="input" type="text" value="<%= 'http://localhost:3000/users/' %>" readonly>
-              </div>
+              <% else %>
+                <div class="avatar-empty my-3">
+                </div>
+              <% end %>
             </div>
+            <div class="name-status-container ps-3 mb-5">
+              <% if @user.available.present? %>
+                <p class="available-status d-flex justify-content-center align-items-center">
+                  <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                  <lord-icon
+                      src="https://cdn.lordicon.com/oezixobx.json"
+                      trigger="hover"
+                      colors="primary:#ffffff"
+                      style="width:20px;height:20px; margin-right: 7px">
+                  </lord-icon>
+                  <%= @user.available? ? "Available" : "Unavailable" %>
+                </p>
+              <% end %>
+              <div class="d-flex align-items-center">
+                <p class="pe-1 profil-name"><%=  @user.first_name.present? ? @user.first_name : "First name"%></p>
+                <p class="ps-1 profil-name"><%=  @user.last_name.present? ? @user.last_name : "Last name"%></p>
+              </div>
+              <% if @user.experiences.present? %>
+                <p class="profil-job"><%= @user.experiences.last.job_name %></p>
+              <% end %>
+            </div>
+          </div>
+          <%# <div data-controller="clipboard" data-clipboard-feedback-text-value="Copied!" class="mt-3">
+            <button class="btn btn-primary" data-action="click->clipboard#copy">Copy to Clipboard</button> %>
+            <%# <input data-clipboard-target="input" type="text" value="= 'http://localhost:3000/users/'" readonly> %>
+          <%# </div> %>
         <% end %>
       </div>
-      <div class="row my-3">
+      <div class="bg-white rounded-4">
+        <h4 class="my-3 title-dashboard">Company Worked</h4>
+        <div class="companies d-flex flex-wrap justify-content-between">
+          <% @user.experiences.each do |experience| %>
+            <% if experience.company.photo.attached? && experience.certified? %>
+              <div class="col-3 mb-2 company-card-container">
+                <div class="company-card-container">
+                  <div class="company-card">
+                    <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "radiusgeneral"%>
+                    <div class="company-name">
+                      <%= experience.company.name %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="row mb-3 mt-4">
+        <h1 class="title-xp"><%= current_user == @user ? "Your" : "#{@user.first_name}'s" %> <span>XP</span></h1>
         <% @user.experiences.each do |experience| %>
           <div class="card-user-experience col-4">
             <div class=" radiusgeneral <%= experience.certified? ? 'experiences' : 'experiences-none' %> m-2 py-2 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
-              <% if experience.certified? == false && current_user.role.present? %>
+              <% if experience.certified? == false %>
                 <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
                   <lord-icon
                       src="https://cdn.lordicon.com/vacmyjrh.json"
@@ -154,7 +141,7 @@
                 <%= "#{experience.start_date} - #{experience.end_date}" %>
               </p>
               <p class="experience-description mt-2 mb-2">
-                <%= truncate(experience.job_description, length: 90) %>
+                <%= truncate(experience.job_description, length: 70) %>
               </p>
             </div>
           </div>
@@ -172,7 +159,9 @@
                   <p class="experience-date mb-4"><%= "#{experience.start_date} - #{experience.end_date}" %></p>
                   <p class="text-modal fw-bolder"><%= experience.job_name %></p>
                   <div data-edit-resource-target="infos">
-                    <i class="fas fa-pen fa-xs ml-2" data-action="click->edit-resource#displayForm"></i>
+                    <% if current_user.role.present? && experience.certified == false %>
+                      <i class="fas fa-pen fa-xs ml-2" data-action="click->edit-resource#displayForm"></i>
+                    <% end %>
                     <p class="text-modal"> <%= experience.job_description  %></p>
                   </div>
                   <% if experience.certified? == false && current_user.role.present? %>
@@ -184,9 +173,11 @@
                       </div>
                     </div>
                   <% end %>
-                  <%= simple_form_for experience, html: {class: 'd-none', 'data-edit-resource-target': 'form'} do |f|%>
-                     <%= f.input :job_description, label: "Job Description", as: :text %>
-                     <%= f.button :submit, class: "btn btn-primary" %>
+                  <% if current_user.role.present? && experience.certified == false %>
+                    <%= simple_form_for experience, html: {class: 'd-none', 'data-edit-resource-target': 'form'} do |f|%>
+                      <%= f.input :job_description, label: "Job Description", as: :text %>
+                      <%= f.button :submit, class: "btn btn-primary" %>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
@@ -194,7 +185,7 @@
           </div>
         <% end %>
         <% if current_user == @user %>
-          <div class="col-4 rounded-4 text-center d-flex flex-column justify-content-center align-items-center experiences-adding m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <div class="col-4 text-center d-flex flex-column justify-content-center align-items-center experiences-adding m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fas fa-plus-circle my-1" style="color: #5877FA;"></i>
             <p class="my-1">Add an Experience</p>
           </div>
@@ -208,7 +199,7 @@
                     <%= f.input :job_description, label: "Job Description" %>
                     <%= f.input :start_date, as: :string, label: "Dates", input_html: { data: { controller: "datepicker" } } %>
                     <%= f.input :end_date, as: :string, label: "End Date", wrapper_html: { class: 'd-none' } %>
-                    <%= f.input :skills, label: "Skills" %>
+                    <%= f.input :skill_list, label: "Skills", as: :select, collection: ActsAsTaggableOn::Tag.all.map(&:name), input_html: { multiple: true, id: "#input-tags", data: { controller: "autocomplete" } } %>
                     <%= f.button :submit, class: "btn btn-primary" %>
                   <% end %>
                 </div>
@@ -216,27 +207,34 @@
             </div>
           </div>
         <% end %>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-6 bg-white rounded-4" style='width:48%!important'>
-          <h4 class="my-3">Company Worked</h4>
-          <div class="companies d-flex flex-wrap justify-content-between">
-            <% @user.experiences.each do |experience| %>
-              <% if experience.company.photo.attached? %>
-                <div class="col-3 mb-2 company-card-container">
-                  <div class="company-card-container">
-                    <div class="company-card">
-                      <%= cl_image_tag experience.company.photo.key, height: 50, width: 50, crop: :fill, class: "photo-modal"%>
-                      <div class="company-name">
-                        <%= experience.company.name %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div class="skills-container mt-4 mb-3">
+          <h1 class="title-xp"><%= current_user == @user ? "Your" : "#{@user.first_name}'s"%> <span>Skills</span></h1>
+          <ul id="skills" class="row">
+            <% @color = ['{ "color": "#19f" }', '{ "color": "#27ae60", "delay": 600 }', '{ "color": "#9b59b6", "delay": 1200 }', '{ "color": "#ae8a33", "delay": 1800 }'] %>
+            <% if @user.experiences.present? %>
+              <% skills = [] %>
+              <% @user.experiences.each do |experience| %>
+                <% if experience.certified? %>
+                  <% experience.skills.each do |skill| %>
+                    <% unless skills.include?(skill) %>
+                      <% skills << skill %>
+                      <li class="letter col-3">
+                        <p class="skill_name"><%= skill %></p>
+                        <div class="bar-container">
+                          <span class="bar" data-bar="<%= @color.sample %>">
+                            <span class="pct"><%= rand(1..100) %>%</span>
+                          </span>
+                        </div>
+                      </li>
+                    <% end %>
+                  <% end %>
+                <% end %>
               <% end %>
             <% end %>
-          </div>
+          </ul>
         </div>
+      </div>
+      <div class="row justify-content-between">
           <div class="col-6 bg-white rounded-4" style='width:48%!important'>
             <h4 class="my-3">ChatRoom</h4>
             <div class="d-flex justify-content-center align-items-center">
