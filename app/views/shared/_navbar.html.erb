@@ -1,8 +1,15 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container">
-    <%= link_to root_path, class: "navbar-brand d-flex align-items-center justify-content-between" do %>
-      <i class="fa-solid fa-vault fa-lg"></i>
-      <p>Referral Safe</p>
+    <% if user_signed_in? && action_name == "show" && current_user.role.present? %>
+      <%= link_to users_path, class: "navbar-brand d-flex align-items-center justify-content-between" do %>
+        <i class="fa-solid fa-vault fa-lg"></i>
+        <p>Referral Safe</p>
+      <% end %>
+    <% else %>
+      <%= link_to root_path, class: "navbar-brand d-flex align-items-center justify-content-between" do %>
+        <i class="fa-solid fa-vault fa-lg"></i>
+        <p>Referral Safe</p>
+      <% end %>
     <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,24 +26,20 @@
         <% if user_signed_in? %>
           <div class="d-flex justify-content-end align-items-center">
             <li>
-              <%# <div class="dropdown">
-                <a class="fa-regular fa-comment fa-lg me-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+               <div class="dropdown">
+                <a class="fa-regular fa-comment fa-lg me-5" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"> %>
-                  <%# if current_user.chatrooms.present? %>
-                    <%# current_user.chatrooms.each do |chatroom| %>
-                      <%# other_user = (chatroom.user_a == current_user ? chatroom.user_b : chatroom.user_a) %>
-                      <%#= link_to user_path(other_user) do %>
-                        <%# <#p>= other_user.first_name</p> %>
-                      <%# end %>
-                    <%# end %>
-                  <%# end %>
-                <%# </ul>
-              </div> %>
-            </li>
-            <li> <%= link_to root_path, class: "navbar-brand" do %>
-              <i class="fa-regular fa-comment fa-lg me-5"></i>
-              <% end %>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <% if current_user.chatrooms.present? %>
+                    <% current_user.chatrooms.each do |chatroom| %>
+                      <% other_user = (chatroom.user_a == current_user ? chatroom.user_b : chatroom.user_a) %>
+                      <%= link_to user_path(other_user) do %>
+                        <p> <%= other_user.first_name %> </p>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
             </li>
             <li class="nav-item dropdown d-flex align-items-center justify-content-center">
             <a href="#" class="" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
