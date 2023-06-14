@@ -199,7 +199,7 @@
                     <%= f.input :job_description, label: "Job Description" %>
                     <%= f.input :start_date, as: :string, label: "Dates", input_html: { data: { controller: "datepicker" } } %>
                     <%= f.input :end_date, as: :string, label: "End Date", wrapper_html: { class: 'd-none' } %>
-                    <%= f.input :skill_list, label: "Skills", as: :select, collection: ActsAsTaggableOn::Tag.all.map(&:name), multiple: true, data: {controller: "autocomplete"} %>
+                    <%= f.input :skill_list, label: "Skills", as: :select, collection: ActsAsTaggableOn::Tag.all.map(&:name), input_html: { multiple: true, id: "#input-tags", data: { controller: "autocomplete" } } %>
                     <%= f.button :submit, class: "btn btn-primary" %>
                   <% end %>
                 </div>

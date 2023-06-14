@@ -8,39 +8,20 @@ export default class extends Controller {
       persist: false,
       createOnBlur: true,
       create: true,
-      render:{
-        option: function(data) {
 
-          const div = document.createElement('div');
-          div.className = 'd-flex align-items-center';
-
-          const span = document.createElement('span');
-          span.className = 'flex-grow-1';
-          span.innerText = data.text;
-          div.append(span);
-
-          const a = document.createElement('a');
-          a.innerText = '#';
-          a.className = 'btn btn-sm btn-light';
-          div.append(a);
-          a.addEventListener('click',function(evt){
-            evt.stopPropagation();
-            alert(`You clicked # within the "${data.text}" option`);
-          });
-
-          return div;
-        },
-      }
 
   })
-  new TomSelect('#ex-clear-button',{
+  new TomSelect('#input-tags',{
     plugins: {
-      'clear_button':{
-        'title':'Remove all selected options',
+      remove_button:{
+        title:'Remove this item',
       }
     },
     persist: false,
     create: true,
+    onDelete: function(values) {
+      return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+    }
   });
 }
 
