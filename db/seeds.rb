@@ -366,7 +366,7 @@ user_1.experiences = Experience.all.sample(6)
 
 puts "user test candidate created"
 
-file = URI.open("https://images.unsplash.com/photo-1685037042785-4767a32f00a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80")
+file = URI.open("https://images.unsplash.com/photo-1573496799515-eebbb63814f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80")
 user_1.photo.attach(io: file, filename: "user#2.png", content_type: "image/png")
 
 user_1.save!
