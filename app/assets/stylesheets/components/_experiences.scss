@@ -32,8 +32,14 @@
   filter: brightness(85%);
 }
 
+.experiences > h3 {
+  width: 90%;
+}
+
 .experiences-none > h3 {
   font-size: 1em;
+  margin-right: 2px;
+
 }
 
 .experiences-none:hover {
@@ -59,8 +65,7 @@
 }
 
 .avatar-company {
-  border-radius: 50%;
-  border: white 1px solid
+
 }
 
 .date-experience {
@@ -101,19 +106,6 @@
 //   color: rgb(73, 73, 73);
 // }
 
-.experiences-adding {
-  background-color: white;
-  border: 2px solid #5877FA;
-  border-radius: 0.2rem;
-  height: 10em;
-  width: 30%;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.experiences-adding:hover {
-  transform: scale(1.02);
-  box-shadow: 7px 7px 0 1px rgba(88, 119, 250, 1);
-  cursor: pointer
-}
 
 .experiences-adding > p {
   font-size: 1em;
@@ -122,4 +114,25 @@
 
 .pending-border {
   border: 3px solid #ff8b07;
+}
+
+.card-user-experience {
+  position: relative;
+  .pending-div {
+    background-color: rgba(0,0,0,0.6);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    p {
+      color: white;
+      font-weight: 600;
+    }
+  }
+  .absolute-alert {
+/*     position: relative; */
+    z-index: 15;
+  }
 }

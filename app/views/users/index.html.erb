@@ -80,22 +80,26 @@
                         </label>
                       <% end %>
                       <%= simple_form_for [user, @role], html: {
-                        class: "d-none d-flex flex-column justify-content-center",
+                        class: "d-none",
                         data: {
                           display_modal_form_target: "formrecruiter"
                         }
                       } do |f| %>
-                        <%= f.label :company do %>
-                          <p class="form-title-company mt-4 mb-3">Select your company<p>
-                        <% end %>
-                        <%= f.association :company, label: false, wrapper: :ts_select, input_class: "", input_html: { class: "", data: { controller: "autocomplete" } } %>
-                        <div class="d-flex justify-content-center align-items-center my-4">
-                          <%= f.label :recruiter do %>
-                            <p class="form-title-company me-3">Are you recruiter ?</p>
-                          <% end %>
-                          <%= f.input :recruiter, label: false %>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                        
+                            <%= f.label :company do %>
+                              <p class="form-title-company mt-4 mb-3">Select your company<p>
+                            <% end %>
+                            <%= f.association :company, label: false, wrapper: :ts_select, input_class: "", input_html: { class: "width-company-form", data: { controller: "autocomplete" } } %>
+    
+                          <div class="d-flex justify-content-center align-items-center my-4">
+                            <%= f.label :recruiter do %>
+                              <p class="form-title-company me-3">Are you recruiter ?</p>
+                            <% end %>
+                            <%= f.input :recruiter, label: false %>
+                          </div>
+                          <%= f.submit "#{user.first_name} #{user.last_name}'s Resume", class: "btn btn-primary input-submit-form" %>
                         </div>
-                        <%= f.button :submit, class: "btn btn-primary" %>
                       <% end %>
 
                       <%= simple_form_for [user, @company], html: {

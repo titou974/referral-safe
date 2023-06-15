@@ -5,6 +5,9 @@ class ExperiencesController < ApplicationController
     @experience = Experience.new(experience_params)
     @experience.user = @user
     @experience.end_date = params[:experience][:start_date][14..23]
+    params[:experience][:skill_list].each do |skill|
+      @experience.skill_list.add(skill)
+    end
     if @experience.save
       redirect_to user_path(@user)
     else
@@ -15,7 +18,7 @@ class ExperiencesController < ApplicationController
   def update
     @experience = Experience.find(params[:id])
     if @experience.update(experience_params)
-      redirect_to user_path(@experience.user), notice: "experience updated"
+      redirect_to user_path(@experience.user), notice: "experience commented"
     else
       render :dashboard, status: :unprocessable_entity
     end
@@ -38,7 +41,7 @@ class ExperiencesController < ApplicationController
 
   def experience_params
     #ajouter la photo du logo de l'entreprise dans les permits quand ce sera done sur la seed.
-    params.require(:experience).permit(:job_name, :job_description, :start_date, :end_date, :skills, :company_id, :skill_list)
+    params.require(:experience).permit(:job_name, :job_description, :start_date, :end_date, :company_id, :skill_list, :comment)
   end
 
 end
