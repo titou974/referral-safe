@@ -2,9 +2,20 @@
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-  <h1 class= "title-home">Chat</h1>
+  <div class="d-flex align-items-center">
+    <p class="my-3 title-xp">Chat</p>
+    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+    <lord-icon
+      src="https://cdn.lordicon.com/pkmkagva.json"
+      trigger="hover"
+      colors="primary:#5877FA"
+      style="width:50px;height:50px"
+    >
+    </lord-icon>
+  </div>
 
-  <div class="messages" data-chatroom-subscription-target="messages">
+
+  <div class="messages border-top" data-chatroom-subscription-target="messages">
     <% chatroom.messages.each do |message| %>
       <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
         <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">

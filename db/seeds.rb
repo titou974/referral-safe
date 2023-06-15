@@ -360,7 +360,8 @@ user_1 = User.new(
   first_name: "Laura",
   last_name: "Lotran",
   password: "123456",
-  address: "1 ter rue des mauvais garçons"
+  address: "1 ter rue des mauvais garçons",
+  available: true
 )
 user_1.experiences = Experience.all.sample(6)
 
