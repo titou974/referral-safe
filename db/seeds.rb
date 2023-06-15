@@ -14,6 +14,7 @@ require 'nokogiri'
 Experience.delete_all
 Role.delete_all
 Company.delete_all
+Message.delete_all
 Chatroom.delete_all
 User.delete_all
 
@@ -309,7 +310,7 @@ photo_urls.take(25).each_with_index do |url, index|
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     address: Faker::Address.full_address,
-    available: Faker::Boolean.boolean
+    available: true
   )
   file = URI.open(url)
   user.photo.attach(io: file, filename: "user#{index + 1}.png", content_type: "image/png")
