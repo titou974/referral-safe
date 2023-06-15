@@ -34,9 +34,8 @@
                   </p>
                 <% end %>
                 <div class="d-flex align-items-center">
-                  <p class="pe-1 profil-name"><%=  @user.first_name.present? ? @user.first_name : "Name"%></p>
-                  <p class="ps-1 profil-name"><%=  @user.last_name.present? ? @user.last_name : ""%></p>
-                  <div class="background-pen ms-3" data-action="click->edit-dashboard#displayFormDashboard">
+                  <p class="profil-name"><%=  @user.first_name.present? && @user.last_name.present? ? "#{@user.first_name} #{@user.last_name}" : "Name" %></p>
+                  <div class="background-pen" data-action="click->edit-dashboard#displayFormDashboard">
                     <i class="fa-solid fa-pen pen fa-xs"></i>
                   </div>
                 </div>
@@ -115,12 +114,13 @@
             <div class=" radiusgeneral <%= experience.certified? ? 'experiences' : 'experiences-none' %> m-2 py-2 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= experience.id %>">
               <% if experience.certified? == false %>
                 <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                  <lord-icon
-                      src="https://cdn.lordicon.com/vacmyjrh.json"
-                      trigger="hover"
-                      colors="primary:#ff8b07"
-                      style="width:30px;height:30px", class="absolute-alert">
-                  </lord-icon>
+                <lord-icon
+                    src="https://cdn.lordicon.com/nxooksci.json"
+                    trigger="hover"
+                    colors="primary:#5877fa"
+                    style="width:30px;height:30px"
+                    class="absolute-alert">
+                </lord-icon>
               <% else %>
                 <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
                   <lord-icon
@@ -158,7 +158,7 @@
                   <p class="text-modal fw-bolder"><%= experience.job_name %></p>
                   <div data-edit-resource-target="infos">
                     <% if current_user.role.present? && experience.certified == false %>
-                      <i class="fas fa-pen fa-xs ml-2" data-action="click->edit-resource#displayForm"></i>
+                      <i class="fas fa-pen fa-xs ml-2 background-pen" data-action="click->edit-resource#displayForm"></i>
                     <% end %>
                     <p class="text-modal"> <%= experience.job_description  %></p>
                   </div>
@@ -173,10 +173,15 @@
                   <% end %>
                   <% if current_user.role.present? && experience.certified == false %>
                     <%= simple_form_for experience, html: {class: 'd-none', 'data-edit-resource-target': 'form'} do |f|%>
-                      <%= f.input :job_description, label: "Job Description", as: :text %>
+                      <%= f.input :comment, label: "Comment on Experience", as: :text %>
                       <%= f.button :submit, class: "btn btn-primary" %>
                     <% end %>
                   <% end %>
+                  <div>
+                    <p class="title-employer" >Employer comment</p>
+                    <p class="employer-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat rem quaerat, tempora asperiores quisquam corrupti placeat exercitationem nostrum libero cupiditate voluptatum, sunt nam veritatis. Tempora dolore officia delectus nihil reprehenderit?</p>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -192,12 +197,12 @@
               <div class="modal-content">
                 <div class="modal-body">
                   <%= simple_form_for [@user, @experience] do |f| %>
-                    <%= f.association :company %>
+                    <%= f.association :company, input_html: { data: { controller: "autocomplete" } } %>
                     <%= f.input :job_name, label: "Job Name" %>
                     <%= f.input :job_description, label: "Job Description" %>
                     <%= f.input :start_date, as: :string, label: "Dates", input_html: { data: { controller: "datepicker" } } %>
                     <%= f.input :end_date, as: :string, label: "End Date", wrapper_html: { class: 'd-none' } %>
-                    <%= f.input :skill_list, label: "Skills", as: :select, collection: ActsAsTaggableOn::Tag.all.map(&:name), input_html: { multiple: true, id: "#input-tags", data: { controller: "autocomplete" } } %>
+                    <%= f.input :skill_list, label: "Skills", as: :select, collection: ActsAsTaggableOn::Tag.all.map(&:name), input_html: { multiple: true, data: { controller: "autocomplete" } } %>
                     <%= f.button :submit, class: "btn btn-primary" %>
                   <% end %>
                 </div>
@@ -233,10 +238,9 @@
         </div>
       </div>
       <div class="row justify-content-between">
-          <div class="col-6 bg-white rounded-4" style='width:48%!important'>
-            <h4 class="my-3">ChatRoom</h4>
+          <div class="col-12 bg-white rounded-4">
             <div class="d-flex justify-content-center align-items-center">
-              <div class="col-4 text-center d-flex flex-column justify-content-center align-items-center chatroom m-2">
+              <div class="chatroom m-2">
                 <% if @chatroom.nil? %>
                   <%= link_to chatrooms_path(id: params[:id]), data: { "turbo-method": :post } do %>
                     <i class="fa-regular fa-comments fa-2xl" style="color: #5877FA;"></i>

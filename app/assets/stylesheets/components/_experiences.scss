@@ -1,5 +1,5 @@
 .experiences {
-  height: 8em;
+  height: 10em;
   background-color: #ffffff;
   font-size: 1em;
   font-weight: 100;
@@ -9,6 +9,7 @@
   transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
   border-radius: 0.2rem;
+
 }
 
 .experiences:hover {
@@ -18,8 +19,8 @@
 }
 
 .experiences-none {
-  border: 2px solid #ff8b07;
-  height: 8em;
+  border: 2px solid #5877FA;
+  height: 10em;
   background-color: #ffffff;
   font-size: 1em;
   font-weight: 100;
@@ -28,11 +29,16 @@
   transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
   border-radius: 0.2rem;
+  filter: brightness(85%);
+}
+
+.experiences-none > h3 {
+  font-size: 1em;
 }
 
 .experiences-none:hover {
   transform: scale(1.02);
-  box-shadow: 7px 7px 0 1px rgb(255, 139, 7);
+  box-shadow: 7px 7px 0 1px rgb(88, 119, 250);
   cursor: pointer
 }
 
@@ -43,11 +49,11 @@
 }
 
 .experiences > h3 {
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .company-experiences > h5 {
-  font-size: 0.7em;
+  font-size: 0.8em;
   font-weight: 500;
   font-style: italic;
 }
@@ -58,13 +64,13 @@
 }
 
 .date-experience {
-  font-size: 0.6em;
+  font-size: 0.8em;
   font-style: italic;
   font-weight: 100;
 }
 
 .experience-description {
-  font-size: 0.6em;
+  font-size: 0.8em;
   color: rgb(0, 0, 0);
   font-weight: 400;
 }
@@ -99,7 +105,7 @@
   background-color: white;
   border: 2px solid #5877FA;
   border-radius: 0.2rem;
-  height: 8em;
+  height: 10em;
   width: 30%;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -110,7 +116,7 @@
 }
 
 .experiences-adding > p {
-  font-size: 0.7em;
+  font-size: 1em;
   font-weight: 500;
 }
 

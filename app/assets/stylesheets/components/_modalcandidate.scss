@@ -24,24 +24,46 @@
 .company-name {
   font-style: italic;
   font-weight: 600;
+  font-size: 40px;
 }
 
 .experience-date {
-  font-size: 0.7em;
+  font-size: 20px;
   font-style: italic;
   font-weight: 100;
 }
 
+.fw-bolder {
+  margin-bottom: 12px;
+}
+
 .text-modal {
-  font-size: 0.5em;
+  font-size: 20px;
 }
 
 .resume-button-container {
-  width: 80%;
+  width: 100%;
   text-align: center;
 }
 
 .resume-button {
   width: 100%;
   margin: 0 auto;
+}
+
+.rounded-circle {
+  width: 100px;
+  height: 100px;
+}
+
+.title-employer{
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+.employer-comment {
+  font-size: 20px;
+  font-style: italic;
 }
