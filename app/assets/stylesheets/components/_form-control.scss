@@ -43,6 +43,10 @@
   width: 10em;
 }
 
+.btn-form-edit {
+  background-color: #5877FA;
+}
+
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #5877FA;
@@ -62,8 +66,8 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-input[type="submit" i] {
-  border-radius: 0.2rem;
+.btn-submit {
+  border-radius: 10px;
   appearance: none;
   user-select: none;
   white-space: none;
@@ -83,11 +87,11 @@ input[type="submit" i] {
 
 
 
-input[type="submit" i]:hover {
+.btn-submit:hover {
   box-shadow: 3px 3px 0 1px rgb(88, 119, 250);
 }
 
-input[type="submit" i]:active {
+.btn-submit:active {
   box-shadow: 0px 0px 0 1px rgb(88, 119, 250)
 }
 

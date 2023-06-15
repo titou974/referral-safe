@@ -9,10 +9,10 @@
         <label class="custom-checkbox-label-aux" for="custom-checkbox-discovery"></label>
       </div>
     </div>
-    <%= f.input :first_name, label: false, input_html: { class: 'form-user '}%>
-    <%= f.input :last_name, label: false, input_html: { class: 'form-user '} %>
+    <%= f.input :first_name, label: false, input_html: { class: 'form-user'}%>
+    <%= f.input :last_name, label: false, input_html: { class: 'form-user'} %>
   </div>
   <div class="text-center ">
-    <%= f.submit input_html: { class: 'btn btn-primary', value: "Update", disable_with:"Update" }%>
+    <%= f.submit "Update", class: 'btn btn-submit' %>
   </div>
 <% end %>
