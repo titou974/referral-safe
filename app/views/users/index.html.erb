@@ -5,14 +5,11 @@
         <h1 class="title-index my-5 text-center pb-3"><span>Recruit</span> Certified <br>Candidates</h1>
         <%= form_with url: users_path, method: :get, class: "d-flex align-items-center" do %>
           <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Elon Musk" %>
-          <%= select_tag :choices, options_for_select(@skills, ""), multiple: true, class: "ms-3", id: "#input-tags", data: {controller: "autocomplete"}, placeholder: "#Marketing" %>
+          <%= select_tag :choices, options_for_select(@skills, ""), multiple: true, id: "#input-tags", data: {controller: "autocomplete"}, placeholder: "#Marketing" %>
           <%= button_tag type: "submit", class: "btn btn-primary mx-3 search" do %>
             <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
         <% end %>
-      </div>
-      <div>
-        <p class="ps-3 pb-5 results"><%= params[:query].present? || params[:choices].present? ? "#{@results} result(s) for #{@total_results * 10} candidates" : "" %></p>
       </div>
       <%# CARDS %>
       <div class="row row-cols-4">
@@ -54,9 +51,11 @@
                   <% if user.experiences.last.present? %>
                     <div class="d-flex align-items-center mt-3 mb-2">
                       <p class= "company-name"><%= user.companies.last.name %></p>
+                    <% if user.photo.attached? %>
                       <%= cl_image_tag user.companies.last.photo.key, height: 50, width: 50, crop: :fill, class: "ms-3" %>
+                    <% end %>
                     </div>
-                    <p class="experience-date mb-4"><%= "#{user.experiences.last.start_date.strftime("%d/%m/%Y")} - #{user.experiences.last.end_date.strftime("%d/%m/%Y")}" %></p>
+                    <p class="experience-date mb-4"><%= "#{user.experiences.last.start_date} - #{user.experiences.last.end_date}" %></p>
                     <p class="text-modal-fw-bolder"><%= user.experiences.last.job_name %></p>
                     <p class="text-modal"> <%= truncate(user.experiences.last.job_description, length: 150) %></p>
                   <% end %>
@@ -83,26 +82,22 @@
                         </label>
                       <% end %>
                       <%= simple_form_for [user, @role], html: {
-                        class: "d-none",
+                        class: "d-none d-flex flex-column justify-content-center",
                         data: {
                           display_modal_form_target: "formrecruiter"
                         }
                       } do |f| %>
-                        <div class="d-flex flex-column justify-content-center align-items-center">
-
-                            <%= f.label :company do %>
-                              <p class="form-title-company mt-4 mb-3">Select your company<p>
-                            <% end %>
-                            <%= f.association :company, label: false, wrapper: :ts_select, input_class: "", input_html: { class: "width-company-form", data: { controller: "autocomplete" } } %>
-
-                          <div class="d-flex justify-content-center align-items-center my-4">
-                            <%= f.label :recruiter do %>
-                              <p class="form-title-company me-3">Are you recruiter ?</p>
-                            <% end %>
-                            <%= f.input :recruiter, label: false %>
-                          </div>
-                          <%= f.submit "#{user.first_name} #{user.last_name}'s Resume", class: "btn btn-primary input-submit-form" %>
+                        <%= f.label :company do %>
+                          <p class="form-title-company mt-4 mb-3">Select your company<p>
+                        <% end %>
+                        <%= f.association :company, label: false, wrapper: :ts_select, input_class: "", input_html: { class: "", data: { controller: "autocomplete" } } %>
+                        <div class="d-flex justify-content-center align-items-center my-4">
+                          <%= f.label :recruiter do %>
+                            <p class="form-title-company me-3">Are you recruiter ?</p>
+                          <% end %>
+                          <%= f.input :recruiter, label: false %>
                         </div>
+                        <%= f.button :submit, class: "btn btn-primary" %>
                       <% end %>
 
                       <%= simple_form_for [user, @company], html: {
