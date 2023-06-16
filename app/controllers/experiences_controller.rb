@@ -17,8 +17,9 @@ class ExperiencesController < ApplicationController
 
   def update
     @experience = Experience.find(params[:id])
-    if @experience.update(experience_params)
-      redirect_to user_path(@experience.user), notice: "experience commented"
+    @experience.certified = true
+    if @experience.save && @experience.update(experience_params)
+      redirect_to user_path(@experience.user), notice: "Experience certified!"
     else
       render :dashboard, status: :unprocessable_entity
     end
