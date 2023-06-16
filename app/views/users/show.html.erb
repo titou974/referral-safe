@@ -257,13 +257,15 @@
           <div class="col-12 bg-white rounded-4">
             <div class="d-flex justify-content-center align-items-center">
               <div class="chatroom m-2">
-                <% if @chatroom.nil? %>
-                  <%= link_to chatrooms_path(id: params[:id]), data: { "turbo-method": :post } do %>
-                    <i class="fa-regular fa-comments fa-2xl" style="color: #5877FA;"></i>
-                    <p class="my-3">Start a new conversation</p>
+                <%  if current_user != @user %>
+                  <% if @chatroom.nil? %>
+                    <%= link_to chatrooms_path(id: params[:id]), data: { "turbo-method": :post } do %>
+                      <i class="fa-regular fa-comments fa-2xl" style="color: #5877FA;"></i>
+                      <p class="my-3">Start a new conversation</p>
+                    <% end %>
+                  <% else %>
+                    <%= render "chatrooms/chatroom", chatroom: @chatroom, message: Message.new %>
                   <% end %>
-                <% else %>
-                  <%= render "chatrooms/chatroom", chatroom: @chatroom, message: Message.new %>
                 <% end %>
               </div>
             </div>
